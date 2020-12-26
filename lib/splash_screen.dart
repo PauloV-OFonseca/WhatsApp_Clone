@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/home.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -6,6 +9,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+    
+  @override
+  void initState(){
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+        () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context)=> Home())
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
