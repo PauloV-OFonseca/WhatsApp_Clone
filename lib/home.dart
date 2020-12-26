@@ -8,6 +8,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   TabController _tabController;
+  List<String> itensActions = [
+    "Novo grupo", 
+    "Nova transmissão", 
+    "WhatsApp Web", 
+    "Mensagens favoritas", 
+    "Configurações"
+  ];
 
   @override
   void initState(){
@@ -19,12 +26,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 
+  _escolhaActionItem(String escolha){
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('WhatsApp'),
         backgroundColor: Colors.green,
+
         bottom: TabBar(
           indicatorWeight: 4,
           labelStyle: TextStyle(
@@ -39,7 +51,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             Tab(text: "Chamadas",)
           ],
         ),
+
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: _escolhaActionItem,
+            itemBuilder: (context){
+              return itensActions.map((String item){
+                return PopupMenuItem<String>(
+                  value: item,
+                  child: Text(item),
+                );
+              }).toList();
+            },
+          )
+        ],
       ),
+
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
@@ -47,6 +74,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           Text("Status"),
           Text("Chamadas"),
         ],
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: Icon(Icons.message),
+        backgroundColor: Colors.green,
       ),
     );
   }
