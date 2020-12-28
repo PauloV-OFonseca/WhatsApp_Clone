@@ -35,7 +35,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: const Text('WhatsApp'),
-        backgroundColor: Colors.green,
 
         bottom: TabBar(
           indicatorWeight: 4,
@@ -80,7 +79,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         onPressed: () {
         },
         child: Icon(Icons.message),
-        backgroundColor: Colors.green,
       ),
     );
   }
