@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/home.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

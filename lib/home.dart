@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/tabs/chatsTab.dart';
+import 'package:whatsapp_clone/tabs/statusTab.dart';
+import 'package:whatsapp_clone/tabs/callsTab.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -69,9 +72,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          Text("Conversas"),
-          Text("Status"),
-          Text("Chamadas"),
+          ChatsTab(),
+          StatusTab(),
+          CallsTab(),
         ],
       ),
 
