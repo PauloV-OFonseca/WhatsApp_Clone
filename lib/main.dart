@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/splash_screen.dart';
-import 'package:whatsapp_clone/utils/RouteGenerator.dart';
+import 'package:whatsapp_clone/utils/route_generator.dart';
 
 void main() {
   runApp(MyApp()
