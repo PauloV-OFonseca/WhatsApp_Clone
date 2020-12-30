@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/tabs/chatsTab.dart';
-import 'package:whatsapp_clone/tabs/statusTab.dart';
-import 'package:whatsapp_clone/tabs/callsTab.dart';
+import 'package:whatsapp_clone/tabs/chats_tab.dart';
+import 'package:whatsapp_clone/tabs/contacts_tab.dart';
+import 'package:whatsapp_clone/tabs/status_tab.dart';
+import 'package:whatsapp_clone/tabs/calls_tab.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -55,6 +56,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
 
         actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Icon(Icons.search),
+          ),
           PopupMenuButton<String>(
             onSelected: _escolhaActionItem,
             itemBuilder: (context){
@@ -80,6 +85,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Navigator.pushNamed(context, "/contacts");
         },
         child: Icon(Icons.message),
       ),

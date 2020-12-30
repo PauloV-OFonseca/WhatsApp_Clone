@@ -10,6 +10,8 @@ class Chat {
   
   String get ultimaMensagem => _ultimaMensagem;
 
+  String get foto => _foto;
+
   set nome(String value){
     _nome = value;
   }
@@ -18,4 +20,7 @@ class Chat {
     _ultimaMensagem = value;
   }
 
+  set foto(String value){
+    _foto = value;
+  }
 }
