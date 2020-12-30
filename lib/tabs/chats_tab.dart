@@ -42,7 +42,7 @@ class _ChatsTabState extends State<ChatsTab> {
             ),
           ),
           subtitle: Text(
-            chat.mensagem,
+            chat.ultimaMensagem,
             style: TextStyle(
               fontSize: 14
             ),
