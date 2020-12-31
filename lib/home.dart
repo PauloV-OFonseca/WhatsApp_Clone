@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/tabs/chats_tab.dart';
-import 'package:whatsapp_clone/tabs/contacts_tab.dart';
 import 'package:whatsapp_clone/tabs/status_tab.dart';
 import 'package:whatsapp_clone/tabs/calls_tab.dart';
 
