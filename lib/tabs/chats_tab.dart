@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/model/chat.dart';
 import 'package:whatsapp_clone/model/user.dart';
+import 'package:whatsapp_clone/utils/mocks.dart';
 
 class ChatsTab extends StatefulWidget {
   @override
@@ -9,25 +10,15 @@ class ChatsTab extends StatefulWidget {
 
 class _ChatsTabState extends State<ChatsTab> {
   
-  List<User> listaUser = [
-    User(
-      "Pessoa 1", "Olá", "1"
-    ),
-    User(
-      "Pessoa 2", "Oi, tudo bom?", "1"
-    ),
-    User(
-      "Pessoa 3", "Quem é?", "1"
-    ),
-  ];
+  final listUser = Mocks().getUsers();
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: listaUser.length,
+      itemCount: listUser.length,
       itemBuilder: (context, index){
 
-        User user = listaUser[index];
+        User user = listUser[index];
 
         return ListTile(
           onTap: (){
@@ -36,7 +27,8 @@ class _ChatsTabState extends State<ChatsTab> {
           contentPadding:EdgeInsets.fromLTRB(16, 8, 16, 8),
           leading: CircleAvatar(
             maxRadius: 30,
-            backgroundColor: Colors.grey
+            backgroundColor: Colors.grey,
+            backgroundImage: NetworkImage(user.foto)
           ),
           title: Text(
             user.nome,
