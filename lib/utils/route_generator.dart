@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/home.dart';
 import 'package:whatsapp_clone/tabs/contacts_tab.dart';
 
-class RouteGenetor {
+class RouteGenerator {
 
   static Route<dynamic> generateRoute(RouteSettings settings){
 

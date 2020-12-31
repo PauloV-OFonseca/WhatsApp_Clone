@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xFF4CAF50)
       ),
       initialRoute: "/",
-      onGenerateRoute: RouteGenetor.generateRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
