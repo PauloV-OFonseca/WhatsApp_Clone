@@ -2,6 +2,7 @@
 class User {
   String _nome;
   String _recado;
+  String _ultimaMensagem;
   String _numero;
   String _foto;
 
@@ -10,6 +11,8 @@ class User {
   String get nome => _nome;
   
   String get recado => _recado;
+
+  String get ultimaMensagem => _ultimaMensagem;
 
   String get numero => _numero;
 
@@ -23,6 +26,10 @@ class User {
     _recado = value;
   }
 
+  set ultimaMensagem(String value){
+    _ultimaMensagem = value;
+  }
+
   set numero(String value){
     _numero = value;
   }
@@ -30,4 +37,5 @@ class User {
   set foto(String value){
     _foto = value;
   }
+
 }

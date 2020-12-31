@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/home.dart';
+import 'package:whatsapp_clone/screens/chat_room.dart';
 import 'package:whatsapp_clone/tabs/contacts_tab.dart';
 
 class RouteGenerator {
 
   static Route<dynamic> generateRoute(RouteSettings settings){
+
+    final args = settings.arguments;
 
     switch(settings.name){
       case "/":
@@ -18,6 +21,10 @@ class RouteGenerator {
       case "/contacts":
         return MaterialPageRoute(
           builder: (_) => ContactsTab()
+        );
+      case "/chatroom":
+        return MaterialPageRoute(
+          builder: (_) => ChatRoom(args)
         );
     }
   

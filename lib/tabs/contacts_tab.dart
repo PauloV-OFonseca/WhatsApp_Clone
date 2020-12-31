@@ -33,6 +33,9 @@ class _ContactsTabState extends State<ContactsTab> {
           User user = listaConversas[index];
 
           return ListTile(
+            onTap: (){
+              Navigator.pushNamed(context, "/chatroom", arguments: user);
+            },
             contentPadding:EdgeInsets.fromLTRB(16, 1, 16, 1),
             leading: CircleAvatar(
               maxRadius: 20,
