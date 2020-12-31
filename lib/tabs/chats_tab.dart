@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/model/chat.dart';
 import 'package:whatsapp_clone/model/user.dart';
 import 'package:whatsapp_clone/utils/mocks.dart';
 
