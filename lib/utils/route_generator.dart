@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/home.dart';
 import 'package:whatsapp_clone/screens/chat_room.dart';
+import 'package:whatsapp_clone/screens/detail_user.dart';
 import 'package:whatsapp_clone/tabs/contacts_tab.dart';
 
 class RouteGenerator {
@@ -25,6 +26,10 @@ class RouteGenerator {
       case "/chatroom":
         return MaterialPageRoute(
           builder: (_) => ChatRoom(args)
+        );
+      case "/detailuser":
+        return MaterialPageRoute(
+          builder: (_) => DetailUser(args)
         );
     }
   

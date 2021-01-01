@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import "package:whatsapp_clone/model/user.dart";
 
 class ChatRoom extends StatefulWidget {
-  User contato;
+  final User contato;
 
   ChatRoom(this.contato);
 
@@ -13,7 +13,6 @@ class ChatRoom extends StatefulWidget {
 class _ChatRoomState extends State<ChatRoom> {
   List<String> listaMensagens = ["Olá", "Tudo bem?"];
   TextEditingController _controllerMensagem = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +84,21 @@ class _ChatRoomState extends State<ChatRoom> {
                 backgroundImage: NetworkImage(widget.contato.foto)),
             Padding(
               padding: EdgeInsets.only(left: 8),
-              child: Text(widget.contato.nome),
-            ),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    InkWell(
+                      child: Text(widget.contato.nome),
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                        Navigator.pushNamed(context, "/detailuser",
+                            arguments: widget.contato);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
