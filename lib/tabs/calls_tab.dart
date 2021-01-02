@@ -20,9 +20,6 @@ class _CallsTabState extends State<CallsTab> {
         Call call = listCall[index];
 
         return ListTile(
-          onTap: (){
-            //Navigator.pushNamed(context, "/chatroom", arguments: user);
-          },
           contentPadding:EdgeInsets.fromLTRB(16, 8, 16, 8),
           leading: CircleAvatar(
             maxRadius: 30,
