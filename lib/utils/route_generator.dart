@@ -31,6 +31,11 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => DetailUser(args)
         );
+        
+      default:
+        return MaterialPageRoute(
+          builder: (_) => Home()
+        );
     }
   
   }
