@@ -4,7 +4,8 @@ class Call {
   final User user;
   final DateTime horario;
   final String tipo; // Voz ou Video
+  final bool isEfetuada;
+  final bool isAtendido;
 
-  Call(this.user, this.horario, this.tipo);
-
+  Call(this.user, this.horario, this.tipo, this.isEfetuada, this.isAtendido);
 }
