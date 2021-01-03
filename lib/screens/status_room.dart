@@ -59,6 +59,7 @@ class _StatusRoomState extends State<StatusRoom> {
                   dotSpacing: 15.0,
                   dotColor: Colors.white,
                   autoplayDuration: const Duration(seconds: 7),
+                  dotPosition: DotPosition.topCenter,
                 ),
               )
             ],
