@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:whatsapp_clone/consts/app_colors.dart';
+import 'package:whatsapp_clone/consts/texts_styles.dart';
 import 'package:whatsapp_clone/model/call.dart';
 import 'package:whatsapp_clone/utils/mocks.dart';
 
@@ -13,11 +15,9 @@ class _CallsTabState extends State<CallsTab> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: listCall.length,
-        itemBuilder: (context, index) {
-          Call call = listCall[index];
-
+    return Column(
+      children: [
+        ...listCall.map((call) {
           return ListTile(
             contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
             leading: CircleAvatar(
@@ -26,38 +26,33 @@ class _CallsTabState extends State<CallsTab> {
                 backgroundImage: NetworkImage(call.user.foto)),
             title: Text(
               call.user.nome,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: TextsStyles.CALL_TITLE_STYLE,
             ),
             subtitle: Row(children: [
               _icones(call),
               Text(
                 DateFormat('dd/MM  kk:mm').format(call.horario),
-                style: TextStyle(fontSize: 14),
+                style: TextsStyles.MESSAGE_TEXT_STYLE,
               ),
             ]),
             trailing: Icon(call.tipo == 'voz' ? Icons.phone : Icons.videocam),
           );
-        });
+        }).toList()
+      ],
+    );
   }
 
   Widget _icones(Call call) {
-    if (!call.isEfetuada && call.isAtendido){
+    if (!call.isEfetuada && call.isAtendido) {
       return Icon(
         Icons.call_received,
-        color: Color(0xFF075E54),
+        color: AppColors.PRIMARY_COLOR,
       );
     }
     if (!call.isEfetuada && !call.isAtendido) {
-      return Icon(
-        Icons.call_received,
-        color: Color(0xFFC62828)
-      );
-    }
-    else{
-      return Icon(
-        Icons.call_made,
-        color: Color(0xFF075E54)
-      );
+      return Icon(Icons.call_received, color: AppColors.REJECT_COLOR);
+    } else {
+      return Icon(Icons.call_made, color: AppColors.PRIMARY_COLOR);
     }
   }
 }
