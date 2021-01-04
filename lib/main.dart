@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/splash_screen.dart';
 import 'package:whatsapp_clone/utils/route_generator.dart';
+import 'consts/app_colors.dart';
 
 void main() {
   runApp(MyApp()
@@ -13,8 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: SplashScreen(),
       theme: ThemeData(
-        primaryColor: Color(0xFF075E54),
-        accentColor: Color(0xFF4CAF50)
+        primaryColor: AppColors.PRIMARY_COLOR,
+        accentColor: AppColors.ACCENT_COLOR
       ),
       initialRoute: "/",
       onGenerateRoute: RouteGenerator.generateRoute,
