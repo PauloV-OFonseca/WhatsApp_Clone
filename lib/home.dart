@@ -36,12 +36,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     setState(() {});
   }
 
-   _escolhaActionItem(String escolha){
-
-  }
+  _escolhaActionItem(String escolha) {}
 
   @override
   Widget build(BuildContext context) {
+    Map<int, Widget> index = {
+      0: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/contacts");
+        },
+        child: Icon(Icons.message),
+      ),
+    };
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -63,7 +69,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
             ],
           ),
-
           actions: <Widget>[
             Padding(
               padding: const EdgeInsets.only(right: 20.0),
@@ -71,8 +76,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
             PopupMenuButton<String>(
               onSelected: _escolhaActionItem,
-              itemBuilder: (context){
-                return itensActions.map((String item){
+              itemBuilder: (context) {
+                return itensActions.map((String item) {
                   return PopupMenuItem<String>(
                     value: item,
                     child: Text(item),
@@ -81,7 +86,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               },
             )
           ],
-
         ),
         body: TabBarView(controller: _tabController, children: [
           Center(
@@ -103,7 +107,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         floatingActionButton: _bottomButtons(),
       ),
     );
-
   }
 
   Widget _bottomButtons() {
@@ -114,18 +117,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         },
         child: Icon(Icons.message),
       );
-    }
-
-    else if (_tabController.index == 1) {
+    } else if (_tabController.index == 1) {
       return FloatingActionButton(
         onPressed: () {
           //Navigator.pushNamed(context, "/contacts");
         },
         child: Icon(Icons.camera_alt),
       );
-    }
-
-    else{
+    } else {
       return FloatingActionButton(
         onPressed: () {
           //Navigator.pushNamed(context, "/contacts");
@@ -133,7 +132,5 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         child: Icon(Icons.phone),
       );
     }
-
   }
-
 }
