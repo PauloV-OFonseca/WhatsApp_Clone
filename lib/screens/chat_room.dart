@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/consts/app_colors.dart';
+import 'package:whatsapp_clone/consts/texts_styles.dart';
 import "package:whatsapp_clone/model/user.dart";
 
 class ChatRoom extends StatefulWidget {
@@ -11,69 +13,8 @@ class ChatRoom extends StatefulWidget {
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-  List<String> listaMensagens = ["Olá", "Tudo bem?"];
-  TextEditingController _controllerMensagem = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    var caixaMensagem = Container(
-      padding: EdgeInsets.all(8),
-      child: Row(children: <Widget>[
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(right: 8),
-            child: TextField(
-              controller: _controllerMensagem,
-              autofocus: true,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 20),
-              decoration: InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(32, 8, 32, 8),
-                  hintText: "Digite uma mensagem...",
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32)),
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.camera_alt),
-                    onPressed: null,
-                  )),
-            ),
-          ),
-        ),
-        FloatingActionButton(
-          backgroundColor: Color(0xff075E54),
-          child: Icon(
-            Icons.send,
-            color: Colors.white,
-          ),
-          mini: true,
-          onPressed: null,
-        )
-      ]),
-    );
-
-    var listView = Expanded(
-      child: ListView.builder(
-          itemCount: listaMensagens.length,
-          itemBuilder: (context, index) {
-            return Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.all(6),
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      color: Color(0xffd2ffa5),
-                      borderRadius: BorderRadius.all(Radius.circular(6))),
-                  child: Text(listaMensagens[index],
-                      style: TextStyle(fontSize: 14)),
-                ),
-              ),
-            );
-          }),
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -112,11 +53,84 @@ class _ChatRoomState extends State<ChatRoom> {
           padding: EdgeInsets.all(8),
           child: Column(
             children: <Widget>[
-              listView,
-              caixaMensagem,
+              ListaDeMensagens(),
+              CaixaDeMensagens(),
             ],
           ),
         )),
+      ),
+    );
+  }
+}
+
+class CaixaDeMensagens extends StatelessWidget {
+  final TextEditingController _controllerMensagem = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: Row(children: <Widget>[
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(right: 8),
+            child: TextField(
+              controller: _controllerMensagem,
+              autofocus: true,
+              keyboardType: TextInputType.text,
+              style: TextStyle(fontSize: 20),
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(32, 8, 32, 8),
+                  hintText: "Digite uma mensagem...",
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32)),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.camera_alt),
+                    onPressed: null,
+                  )),
+            ),
+          ),
+        ),
+        FloatingActionButton(
+          backgroundColor: AppColors.PRIMARY_COLOR,
+          child: Icon(
+            Icons.send,
+            color: Colors.white,
+          ),
+          mini: true,
+          onPressed: null,
+        )
+      ]),
+    );
+  }
+}
+
+class ListaDeMensagens extends StatelessWidget {
+  final List<String> listaMensagens = ["Olá", "Tudo bem?"];
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: [
+          ...listaMensagens.map((msg) {
+            return Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.all(6),
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                      color: AppColors.SENDER_MESSAGE_COLOR,
+                      borderRadius: BorderRadius.all(Radius.circular(6))),
+                  child: Text(msg, style: TextsStyles.MESSAGE_TEXT_STYLE),
+                ),
+              ),
+            );
+          }).toList(),
+        ],
       ),
     );
   }

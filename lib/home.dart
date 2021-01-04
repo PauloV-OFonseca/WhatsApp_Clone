@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/consts/texts_styles.dart';
 import 'package:whatsapp_clone/tabs/calls_tab.dart';
 import 'package:whatsapp_clone/tabs/chats_tab.dart';
 import 'package:whatsapp_clone/tabs/status_tab.dart';
@@ -27,9 +28,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
+    super.dispose();
     _tabController.removeListener(_handleTabIndex);
     _tabController.dispose();
-    super.dispose();
   }
 
   void _handleTabIndex() {
@@ -40,22 +41,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Map<int, Widget> index = {
+    Map<int, Widget> _indexToFAB = {
       0: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, "/contacts");
         },
         child: Icon(Icons.message),
       ),
+      1: FloatingActionButton(
+        onPressed: () {
+          //Navigator.pushNamed(context, "/contacts");
+        },
+        child: Icon(Icons.camera_alt),
+      ),
+      2: FloatingActionButton(
+        onPressed: () {
+          //Navigator.pushNamed(context, "/contacts");
+        },
+        child: Icon(Icons.phone),
+      )
     };
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('WhatsApp'),
+          title: Text("WhatsApp"),
           bottom: TabBar(
             controller: _tabController,
             indicatorWeight: 4,
-            labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            labelStyle: TextsStyles.TAB_STYLE,
             indicatorColor: Colors.white,
             tabs: [
               Tab(
@@ -88,49 +102,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ],
         ),
         body: TabBarView(controller: _tabController, children: [
-          Center(
-            child: Container(
-              child: ChatsTab(),
-            ),
-          ),
-          Center(
-            child: Container(
-              child: StatusTab(),
-            ),
-          ),
-          Center(
-            child: Container(
-              child: CallsTab(),
-            ),
-          ),
+          ChatsTab(),
+          StatusTab(),
+          CallsTab(),
         ]),
-        floatingActionButton: _bottomButtons(),
+        floatingActionButton: _indexToFAB[_tabController.index],
       ),
     );
-  }
-
-  Widget _bottomButtons() {
-    if (_tabController.index == 0) {
-      return FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/contacts");
-        },
-        child: Icon(Icons.message),
-      );
-    } else if (_tabController.index == 1) {
-      return FloatingActionButton(
-        onPressed: () {
-          //Navigator.pushNamed(context, "/contacts");
-        },
-        child: Icon(Icons.camera_alt),
-      );
-    } else {
-      return FloatingActionButton(
-        onPressed: () {
-          //Navigator.pushNamed(context, "/contacts");
-        },
-        child: Icon(Icons.phone),
-      );
-    }
   }
 }
