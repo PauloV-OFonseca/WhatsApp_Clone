@@ -63,8 +63,19 @@ class _ChatRoomState extends State<ChatRoom> {
   }
 }
 
-class CaixaDeMensagens extends StatelessWidget {
+class CaixaDeMensagens extends StatefulWidget {
+  @override
+  _CaixaDeMensagensState createState() => _CaixaDeMensagensState();
+}
+
+class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
   final TextEditingController _controllerMensagem = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controllerMensagem.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +136,7 @@ class ListaDeMensagens extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: AppColors.SENDER_MESSAGE_COLOR,
                       borderRadius: BorderRadius.all(Radius.circular(6))),
-                  child: Text(msg, style: TextsStyles.MESSAGE_TEXT_STYLE),
+                  child: Text(msg, style: TextsStyles.GENERIC_TEXT_STYLE),
                 ),
               ),
             );

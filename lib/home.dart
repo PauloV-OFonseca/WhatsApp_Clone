@@ -72,15 +72,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             labelStyle: TextsStyles.TAB_STYLE,
             indicatorColor: Colors.white,
             tabs: [
-              Tab(
-                text: "Conversas",
-              ),
-              Tab(
-                text: "Status",
-              ),
-              Tab(
-                text: "Chamadas",
-              ),
+              Tab(text: "Conversas"),
+              Tab(text: "Status"),
+              Tab(text: "Chamadas"),
             ],
           ),
           actions: <Widget>[

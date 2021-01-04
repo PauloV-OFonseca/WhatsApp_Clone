@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/model/status.dart';
+import 'package:whatsapp_clone/consts/texts_styles.dart';
 import 'package:whatsapp_clone/utils/mocks.dart';
 
 class StatusTab extends StatefulWidget {
@@ -12,13 +12,10 @@ class _StatusTabState extends State<StatusTab> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: listStatus.length,
-      itemBuilder: (context, index){
-
-        Status status = listStatus[index];
-
-        return ListTile(
+    return Column(
+      children: [
+        ...listStatus.map((status){
+          return ListTile(
           onTap: (){
             Navigator.pushNamed(context, "/statusroom", arguments: status);
           },
@@ -30,13 +27,11 @@ class _StatusTabState extends State<StatusTab> {
           ),
           title: Text(
             status.user.nome,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16
-            ),
+            style: TextsStyles.BOLD_TITLE_STYLE,
           ),
         );
-      }
+        }).toList()
+      ],
     );
   }
 

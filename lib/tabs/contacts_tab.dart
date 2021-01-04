@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/model/user.dart';
+import 'package:whatsapp_clone/consts/texts_styles.dart';
 import 'package:whatsapp_clone/utils/mocks.dart';
 
 class ContactsTab extends StatefulWidget {
@@ -15,14 +15,10 @@ class _ContactsTabState extends State<ContactsTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contatos'),
+        title: const Text("Contatos"),
       ),
-      body: ListView.builder(
-        itemCount: listUser.length,
-        itemBuilder: (context, index){
-
-          User user = listUser[index];
-
+      body: Column(children: [
+        ...listUser.map((user){
           return ListTile(
             onTap: (){
               Navigator.pushNamed(context, "/chatroom", arguments: user);
@@ -35,20 +31,16 @@ class _ContactsTabState extends State<ContactsTab> {
             ),
             title: Text(
               user.nome,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16
-              ),
+              style: TextsStyles.BOLD_TITLE_STYLE
             ),
             subtitle: Text(
               user.recado,
-              style: TextStyle(
-                fontSize: 14
-              ),
+              style: TextsStyles.GENERIC_TEXT_STYLE
             ),
           );
-        }
-      )
+        }).toList()
+      ],)
+      
     );
   }
 
