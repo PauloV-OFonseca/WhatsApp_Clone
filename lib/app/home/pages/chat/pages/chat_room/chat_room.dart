@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/consts/app_colors.dart';
-import 'package:whatsapp_clone/consts/texts_styles.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
+import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 import "package:whatsapp_clone/model/user.dart";
 
 class ChatRoom extends StatefulWidget {

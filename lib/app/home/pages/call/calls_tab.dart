@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:whatsapp_clone/consts/app_colors.dart';
-import 'package:whatsapp_clone/consts/generic_avatar.dart';
-import 'package:whatsapp_clone/consts/texts_styles.dart';
+import 'package:whatsapp_clone/app/shared/components/generic_avatar.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
+import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
+import 'package:whatsapp_clone/app/shared/utils/mocks.dart';
 import 'package:whatsapp_clone/model/call.dart';
-import 'package:whatsapp_clone/utils/mocks.dart';
 
 class CallsTab extends StatefulWidget {
   @override

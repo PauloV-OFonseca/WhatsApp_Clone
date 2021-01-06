@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/consts/texts_styles.dart';
-import 'package:whatsapp_clone/tabs/calls_tab.dart';
-import 'package:whatsapp_clone/tabs/chats_tab.dart';
-import 'package:whatsapp_clone/tabs/status_tab.dart';
+import 'package:whatsapp_clone/app/home/pages/call/calls_tab.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
+import 'package:whatsapp_clone/app/home/pages/status/status_tab.dart';
+import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 
 class Home extends StatefulWidget {
   @override
