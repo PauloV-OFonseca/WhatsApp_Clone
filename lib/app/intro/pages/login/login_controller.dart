@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
@@ -48,9 +49,14 @@ abstract class _LoginControllerBase with Store {
       await _authService.login(email, password);
       navigateToHome(context);
     } catch (e) {
-      print("ALOALO");
       print(e);
     }
+  }
+
+  @action
+  Future<bool> isUserLogged() async {
+    FirebaseUser user = await _authService.getCurrentUser();
+    return user != null ? true : false;
   }
 
   navigateToHome(context) {
@@ -59,5 +65,9 @@ abstract class _LoginControllerBase with Store {
 
   navigateToRegister(context) {
     Navigator.pushNamed(context, "/register");
+  }
+
+  navigateToLogin(context) {
+    Navigator.pushReplacementNamed(context, "/login");
   }
 }
