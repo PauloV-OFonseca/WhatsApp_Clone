@@ -27,11 +27,14 @@ abstract class _LoginControllerBase with Store {
   String emailValidator() {
     if (email != null && !email.contains("@"))
       return "Esse não é um email válido";
-    return null;
+    else
+      return null;
   }
 
   String passwordValidator() {
-    if (password != null && password.length < 3) return "Senha muito pequena";
-    return null;
+    if (password != null && password.length < 3)
+      return "Senha muito pequena";
+    else
+      return null;
   }
 }
