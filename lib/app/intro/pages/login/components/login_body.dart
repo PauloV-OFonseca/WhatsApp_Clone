@@ -26,14 +26,18 @@ class LoginBody extends StatelessWidget {
           Observer(
             builder: (_) {
               return RaisedButton(
-                onPressed: controller.isValid ? () {} : null,
+                onPressed: controller.isValid
+                    ? () {
+                        controller.login(context);
+                      }
+                    : null,
                 child: Text("Login"),
               );
             },
           ),
           RaisedButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/register");
+              controller.navigateToRegister(context);
             },
             child: Text("Cadastrar"),
           )

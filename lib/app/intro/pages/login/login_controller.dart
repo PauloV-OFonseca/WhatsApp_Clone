@@ -1,9 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 part 'login_controller.g.dart';
 
 class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
+  final AuthService _authService = AuthService();
+
   @observable
   String email;
 
@@ -36,5 +40,24 @@ abstract class _LoginControllerBase with Store {
       return "Senha muito pequena";
     else
       return null;
+  }
+
+  @action
+  login(context) async {
+    try {
+      await _authService.login(email, password);
+      navigateToHome(context);
+    } catch (e) {
+      print("ALOALO");
+      print(e);
+    }
+  }
+
+  navigateToHome(context) {
+    Navigator.pushReplacementNamed(context, "/home");
+  }
+
+  navigateToRegister(context) {
+    Navigator.pushNamed(context, "/register");
   }
 }
