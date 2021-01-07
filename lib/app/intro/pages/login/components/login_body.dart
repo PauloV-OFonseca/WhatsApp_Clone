@@ -1,43 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:whatsapp_clone/app/intro/pages/login/login_controller.dart';
+import 'login_form.dart';
 
 class LoginBody extends StatelessWidget {
-  const LoginBody({
-    Key key,
-  }) : super(key: key);
+  final controller = LoginController();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
-          child: TextFormField(
-            decoration: InputDecoration(
-              labelText: "Email",
-              border: OutlineInputBorder(),
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          LoginForm(
+            title: "Email",
+            onChanged: controller.changeEmail,
+            errorText: controller.emailValidator,
+            isPassword: false,
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextFormField(
-            decoration: InputDecoration(
-              labelText: "Senha",
-              border: OutlineInputBorder(),
-            ),
+          LoginForm(
+            title: "Senha",
+            onChanged: controller.changePassword,
+            errorText: controller.passwordValidator,
+            isPassword: true,
           ),
-        ),
-        RaisedButton(
-          onPressed: () {},
-          child: Text("Login"),
-        ),
-        RaisedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/register");
-          },
-          child: Text("Cadastrar"),
-        )
-      ],
+          Observer(
+            builder: (_) {
+              return RaisedButton(
+                onPressed: controller.isValid ? () {} : null,
+                child: Text("Login"),
+              );
+            },
+          ),
+          RaisedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/register");
+            },
+            child: Text("Cadastrar"),
+          )
+        ],
+      ),
     );
   }
 }
