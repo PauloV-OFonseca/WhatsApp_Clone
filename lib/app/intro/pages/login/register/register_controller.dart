@@ -31,7 +31,7 @@ abstract class _RegisterControllerBase with Store {
   changePassword(String newValue) => password = newValue;
 
   String validateName() {
-    if (name == null) {
+    if (name == null || name.isEmpty) {
       return messageEmpty;
     }
 
@@ -39,7 +39,7 @@ abstract class _RegisterControllerBase with Store {
   }
 
   String validateEmail() {
-    if (email == null) {
+    if (email == null || email.isEmpty) {
       return messageEmpty;
     } else if (!email.contains("@")) {
       return "Email inválido";
@@ -49,7 +49,7 @@ abstract class _RegisterControllerBase with Store {
   }
 
   String validatePassword() {
-    if (password == null) {
+    if (password == null || password.isEmpty) {
       return messageEmpty;
     } else if (password.length < 4) {
       return "Mínimo de 4 caracteres";
