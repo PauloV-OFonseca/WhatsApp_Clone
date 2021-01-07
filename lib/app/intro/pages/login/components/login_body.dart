@@ -17,9 +17,9 @@ class LoginBody extends StatelessWidget {
               return TextFormField(
                 onChanged: controller.changeEmail,
                 decoration: InputDecoration(
-                  labelText: "Email",
-                  border: OutlineInputBorder(),
-                ),
+                    labelText: "Email",
+                    border: OutlineInputBorder(),
+                    errorText: controller.emailValidator()),
               );
             },
           ),
@@ -31,9 +31,9 @@ class LoginBody extends StatelessWidget {
               return TextFormField(
                 onChanged: controller.changePassword,
                 decoration: InputDecoration(
-                  labelText: "Senha",
-                  border: OutlineInputBorder(),
-                ),
+                    labelText: "Senha",
+                    border: OutlineInputBorder(),
+                    errorText: controller.passwordValidator()),
               );
             },
           ),
