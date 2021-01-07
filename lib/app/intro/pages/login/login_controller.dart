@@ -11,8 +11,11 @@ abstract class _LoginControllerBase with Store {
   String password;
 
   @computed
-  isValid() {
-    return emailValidator() == null && passwordValidator() == null;
+  bool get isValid {
+    return email != null &&
+        password != null &&
+        emailValidator() == null &&
+        passwordValidator() == null;
   }
 
   @action
@@ -22,12 +25,13 @@ abstract class _LoginControllerBase with Store {
   changePassword(newPassword) => password = newPassword;
 
   String emailValidator() {
-    if (!email.contains("@")) return "Esse não é um email válido";
+    if (email != null && !email.contains("@"))
+      return "Esse não é um email válido";
     return null;
   }
 
   String passwordValidator() {
-    if (password.length < 3) return "Senha muito pequena";
+    if (password != null && password.length < 3) return "Senha muito pequena";
     return null;
   }
 }
