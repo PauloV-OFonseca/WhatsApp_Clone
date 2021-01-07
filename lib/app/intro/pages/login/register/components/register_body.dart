@@ -1,60 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-class RegisterBody extends StatefulWidget {
-  @override
-  _RegisterBodyState createState() => _RegisterBodyState();
-}
+import '../register_controller.dart';
+import 'register_form.dart';
 
-class _RegisterBodyState extends State<RegisterBody> {
+class RegisterBody extends StatelessWidget {
+  final controller = RegisterController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
-              child: TextField(
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  labelText: "Nome",
-                  border: OutlineInputBorder(),
-                ),
-              )
+            RegisterForm(
+              title: "Nome",
+              onChanged: controller.changeName,
+              errorText: controller.validateName,
+              isPassword: false,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
-              child: TextField(
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  labelText: "Email",
-                  border: OutlineInputBorder(),
-                ),
-              )
+            RegisterForm(
+              title: "Email",
+              onChanged: controller.changeEmail,
+              errorText: controller.validateEmail,
+              isPassword: false,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
-              child: TextField(
-                obscureText: true,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  labelText: "Senha",
-                  border: OutlineInputBorder(),
-                ),
-              )
+            RegisterForm(
+              title: "Senha",
+              onChanged: controller.changePassword,
+              errorText: controller.validatePassword,
+              isPassword: true,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
-              child: RaisedButton(
-                child: Text(
-                  "Cadastrar",
-                ),
-                onPressed: (){},
-              )
+            Observer(
+              builder: (_) {
+                return RaisedButton(
+                  onPressed: controller.isValid ? () {} : null,
+                  child: Text("Cadastrar"),
+                );
+              },
             ),
           ],
         ),
-      )
-    );
+      );
   }
 }
