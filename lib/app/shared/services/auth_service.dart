@@ -15,7 +15,7 @@ class AuthService {
     return _auth.signOut();
   }
 
-  Future<void> signIn(String email, String password) {
-    return _auth.signInWithEmailAndPassword(email: email, password: password);
+  Future<AuthResult> createUser(String email, String password) {
+    return _auth.createUserWithEmailAndPassword(email: email, password: password);
   }
 }

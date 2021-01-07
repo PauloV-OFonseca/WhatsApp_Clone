@@ -1,9 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 part 'register_controller.g.dart';
 
 class RegisterController = _RegisterControllerBase with _$RegisterController;
 
 abstract class _RegisterControllerBase with Store {
+  final AuthService _authService = AuthService();
+
   String messageEmpty = "Preencher Campo";
 
   @observable
@@ -51,9 +55,22 @@ abstract class _RegisterControllerBase with Store {
   String validatePassword() {
     if (password == null || password.isEmpty) {
       return messageEmpty;
-    } else if (password.length < 4) {
-      return "Mínimo de 4 caracteres";
+    } else if (password.length < 6) {
+      return "Mínimo de 6 caracteres";
     }
     return null;
+  }
+
+  createUser(context) async {
+    try {
+      await _authService.createUser(email, password);
+      navigateToLogin(context);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  navigateToLogin(context){
+    Navigator.pushReplacementNamed(context, "/login");
   }
 }
