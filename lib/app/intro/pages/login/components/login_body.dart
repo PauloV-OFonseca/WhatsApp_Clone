@@ -8,7 +8,6 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.isValid);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -16,11 +15,13 @@ class LoginBody extends StatelessWidget {
             title: "Email",
             onChanged: controller.changeEmail,
             errorText: controller.emailValidator,
+            isPassword: false,
           ),
           LoginForm(
             title: "Senha",
             onChanged: controller.changePassword,
             errorText: controller.passwordValidator,
+            isPassword: true,
           ),
           Observer(
             builder: (_) {
