@@ -37,7 +37,7 @@ abstract class _LoginControllerBase with Store {
   }
 
   String passwordValidator() {
-    if (password != null && password.length <= 6)
+    if (password != null && password.length < 6)
       return "Senha muito pequena";
     else
       return null;
