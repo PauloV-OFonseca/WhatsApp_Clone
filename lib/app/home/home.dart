@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/app/home/pages/call/calls_tab.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
@@ -16,7 +17,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     "Nova transmissão",
     "WhatsApp Web",
     "Mensagens favoritas",
-    "Configurações"
+    "Configurações",
+    "Deslogar"
   ];
 
   @override
@@ -37,7 +39,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     setState(() {});
   }
 
-  _escolhaActionItem(String escolha) {}
+  _escolhaActionItem(String escolha) {
+    switch (escolha) {
+      case "Deslogar":
+        _signOut();
+    }
+  }
+
+   _signOut() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    await auth.signOut();
+
+    Navigator.pushReplacementNamed(context, "/login");
+  }
 
   @override
   Widget build(BuildContext context) {
