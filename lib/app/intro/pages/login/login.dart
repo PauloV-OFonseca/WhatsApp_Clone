@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/intro/pages/login/components/alert_widget.dart';
+import 'package:whatsapp_clone/app/intro/pages/login/components/error_pop_up.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/login_controller.dart';
 
 import 'components/login_form.dart';
@@ -26,8 +26,8 @@ class _LoginState extends State<Login> {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertWidget(
-              errorMessage: controller.errorMessage,
+            return ErrorPopUp(
+              errorMessage: errorMessage,
             );
           },
         );
