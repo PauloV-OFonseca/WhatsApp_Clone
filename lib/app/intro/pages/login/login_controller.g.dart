@@ -46,11 +46,34 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  final _$loginAsyncAction = AsyncAction('_LoginControllerBase.login');
+  final _$isLoadingAtom = Atom(name: '_LoginControllerBase.isLoading');
 
   @override
-  Future login(dynamic context) {
-    return _$loginAsyncAction.run(() => super.login(context));
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
+  final _$errorMessageAtom = Atom(name: '_LoginControllerBase.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
   }
 
   final _$_LoginControllerBaseActionController =
@@ -79,10 +102,34 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
+  dynamic changeLoading(dynamic newLoading) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.changeLoading');
+    try {
+      return super.changeLoading(newLoading);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic changeErrorMessage(dynamic newErrorMessage) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.changeErrorMessage');
+    try {
+      return super.changeErrorMessage(newErrorMessage);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 email: ${email},
 password: ${password},
+isLoading: ${isLoading},
+errorMessage: ${errorMessage},
 isValid: ${isValid}
     ''';
   }

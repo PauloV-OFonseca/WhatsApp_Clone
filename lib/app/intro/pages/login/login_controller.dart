@@ -15,12 +15,15 @@ abstract class _LoginControllerBase with Store {
   @observable
   String password;
 
+  @observable
+  bool isLoading = false;
+
+  @observable
+  String errorMessage;
+
   @computed
   bool get isValid {
-    return email != null &&
-        password != null &&
-        emailValidator() == null &&
-        passwordValidator() == null;
+    return emailValidator(email) == null && passwordValidator(password) == null;
   }
 
   @action
@@ -29,31 +32,68 @@ abstract class _LoginControllerBase with Store {
   @action
   changePassword(newPassword) => password = newPassword;
 
-  String emailValidator() {
-    if (email != null && !email.contains("@"))
+  @action
+  changeLoading(newLoading) => isLoading = newLoading;
+
+  @action
+  changeErrorMessage(newErrorMessage) => errorMessage = newErrorMessage;
+
+  String emailValidator(value) {
+    if (value != null && !value.contains("@"))
       return "Esse não é um email válido";
     else
       return null;
   }
 
-  String passwordValidator() {
-    if (password != null && password.length < 6)
+  String passwordValidator(value) {
+    if (value != null && value.length < 6)
       return "Senha muito pequena";
     else
       return null;
   }
 
-  @action
   login(context) async {
     try {
+      changeLoading(true);
       await _authService.login(email, password);
       navigateToHome(context);
-    } catch (e) {
-      print(e);
+    } catch (error) {
+      print(error.code);
+      checkError(error.code);
+      changeLoading(false);
     }
   }
 
-  @action
+  checkError(String error) {
+    switch (error) {
+      case 'ERROR_INVALID_EMAIL':
+        {
+          changeErrorMessage('Email inválido.');
+        }
+        break;
+      case 'ERROR_USER_NOT_FOUND':
+        {
+          changeErrorMessage('Usúario não encontrado.');
+        }
+        break;
+      case 'ERROR_WRONG_PASSWORD':
+        {
+          changeErrorMessage('Senha inválida.');
+        }
+        break;
+      case 'ERROR_TOO_MANY_REQUESTS':
+        {
+          changeErrorMessage('Muitas tentativas de login sem sucesso.');
+        }
+        break;
+      default:
+        {
+          changeErrorMessage('Erro');
+        }
+        break;
+    }
+  }
+
   Future<bool> isUserLogged() async {
     FirebaseUser user = await _authService.getCurrentUser();
     return user != null ? true : false;
