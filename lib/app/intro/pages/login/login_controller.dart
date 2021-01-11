@@ -15,6 +15,9 @@ abstract class _LoginControllerBase with Store {
   @observable
   String password;
 
+  @observable
+  bool isLoading = false;
+
   @computed
   bool get isValid {
     return emailValidator(email) == null && passwordValidator(password) == null;
@@ -25,6 +28,9 @@ abstract class _LoginControllerBase with Store {
 
   @action
   changePassword(newPassword) => password = newPassword;
+
+  @action
+  changeLoading(newLoading) => isLoading = newLoading;
 
   String emailValidator(value) {
     if (value != null && !value.contains("@"))
@@ -42,10 +48,12 @@ abstract class _LoginControllerBase with Store {
 
   login(context) async {
     try {
+      changeLoading(true);
       await _authService.login(email, password);
       navigateToHome(context);
     } catch (error) {
       print(error);
+      changeLoading(false);
     }
   }
 

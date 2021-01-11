@@ -46,6 +46,21 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
+  final _$isLoadingAtom = Atom(name: '_LoginControllerBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
 
@@ -72,10 +87,22 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
+  dynamic changeLoading(dynamic newLoading) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.changeLoading');
+    try {
+      return super.changeLoading(newLoading);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 email: ${email},
 password: ${password},
+isLoading: ${isLoading},
 isValid: ${isValid}
     ''';
   }
