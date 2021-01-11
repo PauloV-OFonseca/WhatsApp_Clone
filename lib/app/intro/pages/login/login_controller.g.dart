@@ -61,6 +61,21 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_LoginControllerBase.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
 
@@ -98,11 +113,23 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
+  dynamic changeErrorMessage(dynamic newErrorMessage) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.changeErrorMessage');
+    try {
+      return super.changeErrorMessage(newErrorMessage);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 email: ${email},
 password: ${password},
 isLoading: ${isLoading},
+errorMessage: ${errorMessage},
 isValid: ${isValid}
     ''';
   }

@@ -18,6 +18,9 @@ abstract class _LoginControllerBase with Store {
   @observable
   bool isLoading = false;
 
+  @observable
+  String errorMessage;
+
   @computed
   bool get isValid {
     return emailValidator(email) == null && passwordValidator(password) == null;
@@ -31,6 +34,9 @@ abstract class _LoginControllerBase with Store {
 
   @action
   changeLoading(newLoading) => isLoading = newLoading;
+
+  @action
+  changeErrorMessage(newErrorMessage) => errorMessage = newErrorMessage;
 
   String emailValidator(value) {
     if (value != null && !value.contains("@"))
@@ -52,8 +58,39 @@ abstract class _LoginControllerBase with Store {
       await _authService.login(email, password);
       navigateToHome(context);
     } catch (error) {
-      print(error);
+      print(error.code);
+      checkError(error.code);
       changeLoading(false);
+    }
+  }
+
+  checkError(String error) {
+    switch (error) {
+      case 'ERROR_INVALID_EMAIL':
+        {
+          changeErrorMessage('Email inválido.');
+        }
+        break;
+      case 'ERROR_USER_NOT_FOUND':
+        {
+          changeErrorMessage('Usúario não encontrado.');
+        }
+        break;
+      case 'ERROR_WRONG_PASSWORD':
+        {
+          changeErrorMessage('Senha inválida.');
+        }
+        break;
+      case 'ERROR_TOO_MANY_REQUESTS':
+        {
+          changeErrorMessage('Muitas tentativas de login sem sucesso.');
+        }
+        break;
+      default:
+        {
+          changeErrorMessage('Erro');
+        }
+        break;
     }
   }
 
