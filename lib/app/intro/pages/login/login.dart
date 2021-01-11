@@ -10,6 +10,12 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _validate() {
+      if (_formKey.currentState.validate()) {
+        controller.login(context);
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
@@ -39,14 +45,12 @@ class Login extends StatelessWidget {
             ),
             Observer(
               builder: (_) {
-                return RaisedButton(
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      controller.login(context);
-                    }
-                  },
-                  child: Text("Login"),
-                );
+                return controller.isLoading
+                    ? CircularProgressIndicator()
+                    : RaisedButton(
+                        onPressed: _validate,
+                        child: Text("Login"),
+                      );
               },
             ),
             RaisedButton(
