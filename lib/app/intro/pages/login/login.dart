@@ -1,15 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:whatsapp_clone/app/intro/pages/login/login_controller.dart';
 
-import 'components/login_body.dart';
+import 'components/login_form.dart';
 
 class Login extends StatelessWidget {
+  final controller = LoginController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
+        automaticallyImplyLeading: false,
       ),
-      body: LoginBody(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            LoginForm(
+              title: "Email",
+              onChanged: controller.changeEmail,
+              errorText: controller.emailValidator,
+              isPassword: false,
+            ),
+            LoginForm(
+              title: "Senha",
+              onChanged: controller.changePassword,
+              errorText: controller.passwordValidator,
+              isPassword: true,
+            ),
+            Observer(
+              builder: (_) {
+                return RaisedButton(
+                  onPressed: controller.isValid
+                      ? () {
+                          controller.login(context);
+                        }
+                      : null,
+                  child: Text("Login"),
+                );
+              },
+            ),
+            RaisedButton(
+              onPressed: () {
+                controller.navigateToRegister(context);
+              },
+              child: Text("Cadastrar"),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

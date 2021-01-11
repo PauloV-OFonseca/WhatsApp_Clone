@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/app/intro/pages/login/login_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,15 +8,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final controller = LoginController();
-
   @override
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () async {
-      await controller.isUserLogged()
-          ? controller.navigateToLogin(context)
-          : controller.navigateToHome(context);
+      Navigator.pushNamed(context, "/login");
     });
   }
 

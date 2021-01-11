@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 class LoginForm extends StatelessWidget {
   final String title;
-  final onChanged;
+  final void Function(String) onChanged;
   final bool isPassword;
   final String Function() errorText;
 
@@ -16,6 +16,7 @@ class LoginForm extends StatelessWidget {
       child: Observer(
         builder: (_) {
           return TextFormField(
+            autovalidateMode: AutovalidateMode.disabled,
             onChanged: onChanged,
             obscureText: isPassword,
             decoration: InputDecoration(

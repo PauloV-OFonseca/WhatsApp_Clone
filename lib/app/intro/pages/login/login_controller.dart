@@ -17,10 +17,7 @@ abstract class _LoginControllerBase with Store {
 
   @computed
   bool get isValid {
-    return email != null &&
-        password != null &&
-        emailValidator() == null &&
-        passwordValidator() == null;
+    return emailValidator() == null && passwordValidator() == null;
   }
 
   @action
@@ -43,17 +40,15 @@ abstract class _LoginControllerBase with Store {
       return null;
   }
 
-  @action
   login(context) async {
     try {
       await _authService.login(email, password);
       navigateToHome(context);
-    } catch (e) {
-      print(e);
+    } catch (error) {
+      print(error);
     }
   }
 
-  @action
   Future<bool> isUserLogged() async {
     FirebaseUser user = await _authService.getCurrentUser();
     return user != null ? true : false;
