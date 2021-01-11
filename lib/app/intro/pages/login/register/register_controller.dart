@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/register/components/register_alert_box.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 part 'register_controller.g.dart';
@@ -34,13 +35,7 @@ abstract class _RegisterControllerBase with Store {
   }
 
   String validateEmail(email) {
-    if (email == null || email.isEmpty) {
-      return messageEmpty;
-    } else if (!email.contains("@")) {
-      return "Email inválido";
-    }
-
-    return null;
+    return !EmailValidator.validate(email) ? 'Email inválido' : null;
   }
 
   String validatePassword(password) {
