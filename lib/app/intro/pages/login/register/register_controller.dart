@@ -1,13 +1,15 @@
 import 'package:mobx/mobx.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/register/components/register_alert_box.dart';
-import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
+import 'package:whatsapp_clone/app/intro/pages/login/register/models/new_user_model.dart';
+import 'package:whatsapp_clone/app/intro/pages/login/register/services/register_auth_service.dart';
 part 'register_controller.g.dart';
 
 class RegisterController = _RegisterControllerBase with _$RegisterController;
 
 abstract class _RegisterControllerBase with Store {
+  RegisterAuthService registerAuthService = RegisterAuthService();
   RegisterAlertBox alertBox = RegisterAlertBox();
-  final AuthService _authService = AuthService();
 
   String messageEmpty = "Preencher Campo";
 
@@ -18,16 +20,6 @@ abstract class _RegisterControllerBase with Store {
   @observable
   String password;
 
-  @computed
-  bool get isValid {
-    return name != null &&
-        email != null &&
-        password != null &&
-        validateName() == null &&
-        validateEmail() == null &&
-        validatePassword() == null;
-  }
-
   @action
   changeName(String newValue) => name = newValue;
   @action
@@ -35,7 +27,7 @@ abstract class _RegisterControllerBase with Store {
   @action
   changePassword(String newValue) => password = newValue;
 
-  String validateName() {
+  String validateName(name) {
     if (name == null || name.isEmpty) {
       return messageEmpty;
     }
@@ -43,17 +35,11 @@ abstract class _RegisterControllerBase with Store {
     return null;
   }
 
-  String validateEmail() {
-    if (email == null || email.isEmpty) {
-      return messageEmpty;
-    } else if (!email.contains("@")) {
-      return "Email inválido";
-    }
-
-    return null;
+  String validateEmail(email) {
+    return !EmailValidator.validate(email) ? 'Email inválido' : null;
   }
 
-  String validatePassword() {
+  String validatePassword(password) {
     if (password == null || password.isEmpty) {
       return messageEmpty;
     } else if (password.length < 6) {
@@ -62,9 +48,9 @@ abstract class _RegisterControllerBase with Store {
     return null;
   }
 
-  createUser(context) async {
+  createUser(NewUserModel user, context) async {
     try {
-      await _authService.createUser(email, password);
+      registerAuthService.signUp(user);
       alertBox.showMyDialog(context);
     } catch (e) {
       print(e);
