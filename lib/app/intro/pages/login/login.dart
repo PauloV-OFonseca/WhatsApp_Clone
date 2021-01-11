@@ -18,21 +18,25 @@ class _LoginState extends State<Login> {
 
   ReactionDisposer reactionDisposer;
 
-  @override
-  void initState() {
-    super.initState();
+  _showError() {
     reactionDisposer = reaction((_) => controller.errorMessage, (errorMessage) {
       if (errorMessage != null) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return ErrorPopUp(
-              errorMessage: errorMessage,
+              errorMessage: controller.errorMessage,
             );
           },
         );
       }
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _showError();
   }
 
   @override
