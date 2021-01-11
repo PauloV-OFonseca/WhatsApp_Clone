@@ -5,9 +5,9 @@ class RegisterForm extends StatelessWidget {
   final String title;
   final onChanged;
   final bool isPassword;
-  final String Function() errorText;
+  final String Function(String) validator;
 
-  RegisterForm({this.title, this.onChanged, this.errorText, this.isPassword});
+  RegisterForm({this.title, this.onChanged, this.isPassword, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,10 @@ class RegisterForm extends StatelessWidget {
           return TextFormField(
             onChanged: onChanged,
             obscureText: isPassword,
+            validator: validator,
             decoration: InputDecoration(
               labelText: title,
               border: OutlineInputBorder(),
-              errorText: errorText(),
             ),
           );
         },

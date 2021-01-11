@@ -18,16 +18,6 @@ abstract class _RegisterControllerBase with Store {
   @observable
   String password;
 
-  @computed
-  bool get isValid {
-    return name != null &&
-        email != null &&
-        password != null &&
-        validateName() == null &&
-        validateEmail() == null &&
-        validatePassword() == null;
-  }
-
   @action
   changeName(String newValue) => name = newValue;
   @action
@@ -35,7 +25,7 @@ abstract class _RegisterControllerBase with Store {
   @action
   changePassword(String newValue) => password = newValue;
 
-  String validateName() {
+  String validateName(name) {
     if (name == null || name.isEmpty) {
       return messageEmpty;
     }
@@ -43,7 +33,7 @@ abstract class _RegisterControllerBase with Store {
     return null;
   }
 
-  String validateEmail() {
+  String validateEmail(email) {
     if (email == null || email.isEmpty) {
       return messageEmpty;
     } else if (!email.contains("@")) {
@@ -53,7 +43,7 @@ abstract class _RegisterControllerBase with Store {
     return null;
   }
 
-  String validatePassword() {
+  String validatePassword(password) {
     if (password == null || password.isEmpty) {
       return messageEmpty;
     } else if (password.length < 6) {
