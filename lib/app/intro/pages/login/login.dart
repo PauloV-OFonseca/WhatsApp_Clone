@@ -6,6 +6,7 @@ import 'components/login_form.dart';
 
 class Login extends StatelessWidget {
   final controller = LoginController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -17,26 +18,33 @@ class Login extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            LoginForm(
-              title: "Email",
-              onChanged: controller.changeEmail,
-              errorText: controller.emailValidator,
-              isPassword: false,
-            ),
-            LoginForm(
-              title: "Senha",
-              onChanged: controller.changePassword,
-              errorText: controller.passwordValidator,
-              isPassword: true,
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  LoginForm(
+                    title: "Email",
+                    onChanged: controller.changeEmail,
+                    validator: controller.emailValidator,
+                    isPassword: false,
+                  ),
+                  LoginForm(
+                    title: "Senha",
+                    onChanged: controller.changePassword,
+                    validator: controller.passwordValidator,
+                    isPassword: true,
+                  ),
+                ],
+              ),
             ),
             Observer(
               builder: (_) {
                 return RaisedButton(
-                  onPressed: controller.isValid
-                      ? () {
-                          controller.login(context);
-                        }
-                      : null,
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      controller.login(context);
+                    }
+                  },
                   child: Text("Login"),
                 );
               },

@@ -5,9 +5,9 @@ class LoginForm extends StatelessWidget {
   final String title;
   final void Function(String) onChanged;
   final bool isPassword;
-  final String Function() errorText;
+  final String Function(String) validator;
 
-  LoginForm({this.title, this.onChanged, this.errorText, this.isPassword});
+  LoginForm({this.title, this.onChanged, this.validator, this.isPassword});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +16,12 @@ class LoginForm extends StatelessWidget {
       child: Observer(
         builder: (_) {
           return TextFormField(
-            autovalidateMode: AutovalidateMode.disabled,
+            validator: validator,
             onChanged: onChanged,
             obscureText: isPassword,
             decoration: InputDecoration(
               labelText: title,
               border: OutlineInputBorder(),
-              errorText: errorText(),
             ),
           );
         },
