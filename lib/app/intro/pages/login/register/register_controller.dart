@@ -35,12 +35,8 @@ abstract class _RegisterControllerBase with Store {
     try {
       final imagePicker =
           await ImagePicker().getImage(source: ImageSource.gallery);
-      if (imagePicker != null) {
-        print(imagePicker.path);
+      if (imagePicker != null)
         image = File(imagePicker.path);
-      } else {
-        print("Sem imagem selecionada");
-      }
     } catch (error) {
       print(error);
     }
