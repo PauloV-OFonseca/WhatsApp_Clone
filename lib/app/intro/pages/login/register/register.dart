@@ -24,8 +24,8 @@ class Register extends StatelessWidget {
                     Text("Selecione uma imagem"),
                     Observer(builder: (_) {
                       return ProfileImage(
-                        image: null,
-                        getImage: (){},
+                        image: controller.image,
+                        getImage: controller.getImage,
                         removeImage: (){},
                       );
                     }),
