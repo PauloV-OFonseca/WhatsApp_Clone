@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/register/models/new_user_model.dart';
+import 'components/profile_image.dart';
 import 'components/register_form.dart';
 import 'register_controller.dart';
 
@@ -20,6 +21,14 @@ class Register extends StatelessWidget {
                 key: _registerFormKey,
                 child: Column(
                   children: [
+                    Text("Selecione uma imagem"),
+                    Observer(builder: (_) {
+                      return ProfileImage(
+                        image: null,
+                        getImage: (){},
+                        removeImage: (){},
+                      );
+                    }),
                     RegisterForm(
                       title: "Nome",
                       onChanged: controller.changeName,
