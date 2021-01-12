@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/register/components/register_alert_box.dart';
@@ -10,7 +13,6 @@ class RegisterController = _RegisterControllerBase with _$RegisterController;
 abstract class _RegisterControllerBase with Store {
   RegisterAuthService registerAuthService = RegisterAuthService();
   RegisterAlertBox alertBox = RegisterAlertBox();
-
   String messageEmpty = "Preencher Campo";
 
   @observable
@@ -19,6 +21,8 @@ abstract class _RegisterControllerBase with Store {
   String email;
   @observable
   String password;
+  @observable
+  File image;
 
   @action
   changeName(String newValue) => name = newValue;
@@ -26,6 +30,24 @@ abstract class _RegisterControllerBase with Store {
   changeEmail(String newValue) => email = newValue;
   @action
   changePassword(String newValue) => password = newValue;
+  @action
+  Future getImage() async {
+    try {
+      final imagePicker =
+          await ImagePicker().getImage(source: ImageSource.gallery);
+      if (imagePicker != null) {
+        print(imagePicker.path);
+        image = File(imagePicker.path);
+      } else {
+        print("Sem imagem selecionada");
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  @action
+  removeImage() => image = null;
 
   String validateName(name) {
     if (name == null || name.isEmpty) {

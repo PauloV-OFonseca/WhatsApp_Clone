@@ -66,18 +66,22 @@ class _LoginState extends State<Login> {
               key: _formKey,
               child: Column(
                 children: [
-                  LoginForm(
-                    title: "Email",
-                    onChanged: controller.changeEmail,
-                    validator: controller.emailValidator,
-                    isPassword: false,
-                  ),
-                  LoginForm(
-                    title: "Senha",
-                    onChanged: controller.changePassword,
-                    validator: controller.passwordValidator,
-                    isPassword: true,
-                  ),
+                  Observer(builder: (_) {
+                    return LoginForm(
+                      title: "Email",
+                      onChanged: controller.changeEmail,
+                      validator: controller.emailValidator,
+                      isPassword: false,
+                    );
+                  }),
+                  Observer(builder: (_) {
+                    return LoginForm(
+                      title: "Senha",
+                      onChanged: controller.changePassword,
+                      validator: controller.passwordValidator,
+                      isPassword: true,
+                    );
+                  }),
                 ],
               ),
             ),
