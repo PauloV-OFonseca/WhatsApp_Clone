@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/register/models/new_user_model.dart';
@@ -23,11 +24,36 @@ class Register extends StatelessWidget {
                   children: [
                     Text("Selecione uma imagem"),
                     Observer(builder: (_) {
-                      return ProfileImage(
-                        image: controller.image,
-                        getImage: controller.getImage,
-                        removeImage: (){},
-                      );
+                      print("teste");
+                      return controller.image == null
+                          ? MaterialButton(
+                              onPressed: controller.getImage,
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "https://cdn.onlinewebfonts.com/svg/img_148071.png",
+                                height: 100,
+                                width: 100,
+                              ),
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                MaterialButton(
+                                  padding: EdgeInsets.all(0),
+                                  minWidth: 0,
+                                  onPressed: controller.getImage,
+                                  child: Image.file(
+                                    controller.image,
+                                    width: 100,
+                                    height: 100,
+                                  ),
+                                ),
+                                RemoveImageButton(
+                                  image: controller.image,
+                                  onTap: controller.removeImage,
+                                )
+                              ],
+                            );
                     }),
                     RegisterForm(
                       title: "Nome",
