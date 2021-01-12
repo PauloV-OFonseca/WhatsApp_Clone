@@ -65,14 +65,10 @@ class _RegisterState extends State<Register> {
                 ],
               ),
             ),
-            controller.isLoading
-                ? CircularProgressIndicator()
-                : RaisedButton(
-                    onPressed: () {
-                      _validate();
-                    },
-                    child: Text("Cadastrar"),
-                  )
+            RaisedButton(
+              onPressed: _validate,
+              child: Text("Cadastrar"),
+            )
           ],
         );
       })),
