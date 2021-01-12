@@ -19,6 +19,13 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    _validate() {
+      if (_registerFormKey.currentState.validate()) {
+        _registerFormKey.currentState.save();
+        controller.createUser(user, context);
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text("Cadastro")),
       body: SingleChildScrollView(child: Observer(builder: (_) {
@@ -58,15 +65,14 @@ class _RegisterState extends State<Register> {
                 ],
               ),
             ),
-            RaisedButton(
-              onPressed: () {
-                if (_registerFormKey.currentState.validate()) {
-                  _registerFormKey.currentState.save();
-                  controller.createUser(user, context);
-                }
-              },
-              child: Text("Cadastrar"),
-            )
+            controller.isLoading
+                ? CircularProgressIndicator()
+                : RaisedButton(
+                    onPressed: () {
+                      _validate();
+                    },
+                    child: Text("Cadastrar"),
+                  )
           ],
         );
       })),
