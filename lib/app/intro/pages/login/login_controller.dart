@@ -21,11 +21,6 @@ abstract class _LoginControllerBase with Store {
   @observable
   String errorMessage;
 
-  @computed
-  bool get isValid {
-    return emailValidator(email) == null && passwordValidator(password) == null;
-  }
-
   @action
   changeEmail(newEmail) => email = newEmail;
 
