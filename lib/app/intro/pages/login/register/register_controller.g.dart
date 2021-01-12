@@ -9,12 +9,6 @@ part of 'register_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterController on _RegisterControllerBase, Store {
-  Computed<bool> _$isValidComputed;
-
-  @override
-  bool get isValid => (_$isValidComputed ??= Computed<bool>(() => super.isValid,
-          name: '_RegisterControllerBase.isValid'))
-      .value;
 
   final _$nameAtom = Atom(name: '_RegisterControllerBase.name');
 
@@ -102,8 +96,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     return '''
 name: ${name},
 email: ${email},
-password: ${password},
-isValid: ${isValid}
+password: ${password}
     ''';
   }
 }
