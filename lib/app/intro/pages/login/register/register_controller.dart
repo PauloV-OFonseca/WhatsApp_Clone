@@ -32,9 +32,9 @@ abstract class _RegisterControllerBase with Store {
   changePassword(String newValue) => password = newValue;
   @action
   Future getImage() async {
-    final picker = ImagePicker();
     try {
-      final imagePicker = await picker.getImage(source: ImageSource.gallery);
+      final imagePicker =
+          await ImagePicker().getImage(source: ImageSource.gallery);
       if (imagePicker != null) {
         print(imagePicker.path);
         image = File(imagePicker.path);
