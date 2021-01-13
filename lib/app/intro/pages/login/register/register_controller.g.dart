@@ -76,6 +76,14 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     return _$getImageAsyncAction.run(() => super.getImage());
   }
 
+  final _$getImageUrlAsyncAction =
+      AsyncAction('_RegisterControllerBase.getImageUrl');
+
+  @override
+  Future<String> getImageUrl() {
+    return _$getImageUrlAsyncAction.run(() => super.getImageUrl());
+  }
+
   final _$_RegisterControllerBaseActionController =
       ActionController(name: '_RegisterControllerBase');
 
