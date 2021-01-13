@@ -26,8 +26,6 @@ abstract class _RegisterControllerBase with Store {
   String password;
   @observable
   File image;
-  @observable
-  bool isLoading = false;
 
   @action
   changeName(String newValue) => name = newValue;
@@ -35,8 +33,6 @@ abstract class _RegisterControllerBase with Store {
   changeEmail(String newValue) => email = newValue;
   @action
   changePassword(String newValue) => password = newValue;
-  @action
-  changeLoading(bool newValue) => isLoading = newValue;
 
   @action
   Future getImage() async {
@@ -83,11 +79,11 @@ abstract class _RegisterControllerBase with Store {
 
   createUser(NewUserModel user, context) async {
     try {
-      changeLoading(true);
+      alertBox.showMyDialog(context, true);
       var imageUrl = await getImageUrl();
       user.dados.foto = imageUrl;
       await registerAuthService.signUp(user);
-      alertBox.showMyDialog(context);
+      alertBox.showMyDialog(context, false);
     } catch (e) {
       print(e);
     }
