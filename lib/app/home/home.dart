@@ -13,11 +13,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController _tabController;
   List<String> itensActions = [
-    "Novo grupo",
-    "Nova transmissão",
-    "WhatsApp Web",
-    "Mensagens favoritas",
-    "Configurações",
+    // "Novo grupo",
+    // "Nova transmissão",
+    // "WhatsApp Web",
+    // "Mensagens favoritas",
+    // "Configurações",
     "Deslogar"
   ];
 
