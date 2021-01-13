@@ -12,7 +12,7 @@ class ChatModel {
   ChatModel({
     this.foto,
     this.id,
-    this.mensagensNaoLdias,
+    this.mensagensNaoLidas,
     this.silenciado,
     this.titulo,
     this.ultimaMensagem,
@@ -21,7 +21,7 @@ class ChatModel {
 
   String foto;
   String id;
-  int mensagensNaoLdias;
+  int mensagensNaoLidas;
   bool silenciado;
   String titulo;
   UltimaMensagem ultimaMensagem;
@@ -39,7 +39,7 @@ class ChatModel {
       ChatModel(
         foto: foto ?? this.foto,
         id: id ?? this.id,
-        mensagensNaoLdias: mensagensNaoLdias ?? this.mensagensNaoLdias,
+        mensagensNaoLidas: mensagensNaoLdias ?? this.mensagensNaoLidas,
         silenciado: silenciado ?? this.silenciado,
         titulo: titulo ?? this.titulo,
         ultimaMensagem: ultimaMensagem ?? this.ultimaMensagem,
@@ -49,9 +49,9 @@ class ChatModel {
   factory ChatModel.fromJson(Map<String, dynamic> json) => ChatModel(
         foto: json["foto"] == null ? null : json["foto"],
         id: json["id"] == null ? null : json["id"],
-        mensagensNaoLdias: json["mensagens_nao_ldias"] == null
+        mensagensNaoLidas: json["mensagens_nao_lidas"] == null
             ? null
-            : json["mensagens_nao_ldias"],
+            : json["mensagens_nao_lidas"],
         silenciado: json["silenciado"] == null ? null : json["silenciado"],
         titulo: json["titulo"] == null ? null : json["titulo"],
         ultimaMensagem: json["ultima_mensagem"] == null
@@ -63,8 +63,8 @@ class ChatModel {
   Map<String, dynamic> toJson() => {
         "foto": foto == null ? null : foto,
         "id": id == null ? null : id,
-        "mensagens_nao_ldias":
-            mensagensNaoLdias == null ? null : mensagensNaoLdias,
+        "mensagens_nao_lidas":
+            mensagensNaoLidas == null ? null : mensagensNaoLidas,
         "silenciado": silenciado == null ? null : silenciado,
         "titulo": titulo == null ? null : titulo,
         "ultima_mensagem":

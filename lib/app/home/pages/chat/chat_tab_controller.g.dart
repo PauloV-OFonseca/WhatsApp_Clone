@@ -12,13 +12,13 @@ mixin _$ChatTabController on _ChatTabControllerBase, Store {
   final _$chatListAtom = Atom(name: '_ChatTabControllerBase.chatList');
 
   @override
-  ObservableList<dynamic> get chatList {
+  ObservableList<ChatModel> get chatList {
     _$chatListAtom.reportRead();
     return super.chatList;
   }
 
   @override
-  set chatList(ObservableList<dynamic> value) {
+  set chatList(ObservableList<ChatModel> value) {
     _$chatListAtom.reportWrite(value, super.chatList, () {
       super.chatList = value;
     });
