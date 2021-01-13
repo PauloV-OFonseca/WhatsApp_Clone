@@ -46,7 +46,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     }
   }
 
-   _signOut() async {
+  _signOut() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signOut();
 
@@ -79,6 +79,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text("WhatsApp"),
           bottom: TabBar(
             controller: _tabController,
