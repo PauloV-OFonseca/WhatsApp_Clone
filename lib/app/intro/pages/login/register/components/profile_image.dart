@@ -17,7 +17,6 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Passei aqui $image");
     return image == null
         ? MaterialButton(
             onPressed: getImage,
