@@ -4,6 +4,7 @@ import 'package:whatsapp_clone/app/home/pages/chat/chat_tab_controller.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/shared/components/generic_avatar.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
+import 'package:whatsapp_clone/model/user.dart';
 
 class ChatsTab extends StatefulWidget {
   @override
@@ -25,7 +26,11 @@ class _ChatsTabState extends State<ChatsTab> {
                   ListTile(
                     onTap: () {
                       Navigator.pushNamed(context, "/chatroom",
-                          arguments: user);
+                          arguments: User(
+                              foto: user.foto,
+                              nome: user.titulo,
+                              numero: "98998999",
+                              recado: user.ultimaMensagem.texto));
                     },
                     contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                     leading: GenericAvatar().circleProfile(user.foto),
