@@ -4,14 +4,14 @@ import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/models/user_mo
 class ContactServices {
   final databaseReference = FirebaseDatabase.instance.reference();
 
-  Stream<List<UserModel>> getUsersList() {
+  Stream<List<UserModel>> checkUsersList() {
     return databaseReference.child("usuarios_chat").onValue.map((event) {
       Map<dynamic, dynamic> result = event.snapshot.value;
-      List<UserModel> usersList = result.entries.map((entry) {
+      List<UserModel> userList = result.entries.map((entry) {
         entry.value["key"] = entry.key;
         return UserModel.fromJson(entry.value);
       }).toList();
-      return usersList;
+      return userList;
     });
   }
 }
