@@ -15,6 +15,12 @@ class _ContactsTabState extends State<ContactsTab> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Contatos"),
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: Icon(Icons.search),
+            ),
+          ],
         ),
         body: Column(
           children: [
