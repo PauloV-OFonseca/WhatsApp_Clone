@@ -3,7 +3,7 @@ import 'package:whatsapp_clone/app/home/home.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/chat_room.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/pages/detail_user.dart';
 import 'package:whatsapp_clone/app/home/pages/status/pages/status_room.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts_tab.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/contacts_tab.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/login.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/register/register.dart';
 
