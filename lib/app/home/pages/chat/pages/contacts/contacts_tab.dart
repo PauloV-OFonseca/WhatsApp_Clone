@@ -31,49 +31,29 @@ class _ContactsTabState extends State<ContactsTab> {
             ),
           ],
         ),
-        body: Observer(
-          builder: (_) {
-            return Column(
-              children: [
-                ...controller.userList.map((user) {
-                  return ListTile(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/chatroom",
-                          arguments: user);
-                    },
-                    contentPadding: EdgeInsets.fromLTRB(16, 1, 16, 1),
-                    leading: CircleAvatar(
-                        maxRadius: 20,
-                        backgroundColor: Colors.grey,
-                        backgroundImage: NetworkImage(user.foto)),
-                    title: Text(user.nome, style: TextsStyles.BOLD_TITLE_STYLE),
-                    subtitle: Text(user.status,
-                        style: TextsStyles.GENERIC_TEXT_STYLE),
-                  );
-                }).toList()
-              ],
-            );
-          },
-        )
-        // Column(
-        //   children: [
-        //     ...listUser.map((user) {
-        //       return ListTile(
-        //         onTap: () {
-        //           Navigator.pushNamed(context, "/chatroom", arguments: user);
-        //         },
-        //         contentPadding: EdgeInsets.fromLTRB(16, 1, 16, 1),
-        //         leading: CircleAvatar(
-        //             maxRadius: 20,
-        //             backgroundColor: Colors.grey,
-        //             backgroundImage: NetworkImage(user.foto)),
-        //         title: Text(user.nome, style: TextsStyles.BOLD_TITLE_STYLE),
-        //         subtitle:
-        //             Text(user.recado, style: TextsStyles.GENERIC_TEXT_STYLE),
-        //       );
-        //     }).toList()
-        //   ],
-        // )
-        );
+        body: Observer(builder: (_) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ...controller.userList.map((user) {
+                return ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/chatroom", arguments: user);
+                  },
+                  contentPadding: EdgeInsets.fromLTRB(16, 1, 16, 1),
+                  leading: CircleAvatar(
+                      maxRadius: 20,
+                      backgroundColor: Colors.grey,
+                      backgroundImage: NetworkImage(
+                        user.foto != null ? user.foto : "https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
+                        )),
+                  title: Text(user.nome, style: TextsStyles.BOLD_TITLE_STYLE),
+                  subtitle:
+                      Text(user.status, style: TextsStyles.GENERIC_TEXT_STYLE),
+                );
+              }).toList()
+            ],
+          );
+        }));
   }
 }

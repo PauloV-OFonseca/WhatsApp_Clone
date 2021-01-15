@@ -9,13 +9,13 @@ part 'contacts_controller.g.dart';
 class ContactsController = _ContactsController with _$ContactsController;
 
 abstract class _ContactsController with Store {
-  final ContactServices contactServices;
+  final ContactServices contactServices = ContactServices();
   StreamSubscription subscription;
 
   @observable
   ObservableList<UserModel> userList = <UserModel>[].asObservable();
 
-  _ContactsController({this.contactServices}) {
+  _ContactsController() {
     subscription = contactServices.checkUsersList().listen((event) {
       userList = event.asObservable();
     });
