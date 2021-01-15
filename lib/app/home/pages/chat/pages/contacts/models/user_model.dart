@@ -21,7 +21,7 @@ class UserModel {
   String nome;
   String key;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(Map<dynamic, dynamic> json) => UserModel(
         status: json["email"] == null ? null : json["email"],
         foto: json["foto"] == null ? null : json["foto"],
         nome: json["nome"] == null ? null : json["nome"],
