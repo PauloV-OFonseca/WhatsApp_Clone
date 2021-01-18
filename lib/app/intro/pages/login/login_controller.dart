@@ -95,7 +95,7 @@ abstract class _LoginControllerBase with Store {
   }
 
   navigateToHome(context) {
-    Navigator.pushReplacementNamed(context, "/home");
+    Navigator.pushNamedAndRemoveUntil(context, "/home", (_) => false);
   }
 
   navigateToRegister(context) {
