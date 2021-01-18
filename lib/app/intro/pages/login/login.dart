@@ -60,42 +60,34 @@ class _LoginState extends State<Login> {
         title: Text("Login"),
         automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: SingleChildScrollView(child: Observer(builder: (_) {
+        return Column(
           children: [
             Form(
               key: _formKey,
               child: Column(
                 children: [
-                  Observer(builder: (_) {
-                    return LoginForm(
-                      title: "Email",
-                      onChanged: controller.changeEmail,
-                      validator: controller.emailValidator,
-                      isPassword: false,
-                    );
-                  }),
-                  Observer(builder: (_) {
-                    return LoginForm(
-                      title: "Senha",
-                      onChanged: controller.changePassword,
-                      validator: controller.passwordValidator,
-                      isPassword: true,
-                    );
-                  }),
+                  LoginForm(
+                    title: "Email",
+                    onChanged: controller.changeEmail,
+                    validator: controller.emailValidator,
+                    isPassword: false,
+                  ),
+                  LoginForm(
+                    title: "Senha",
+                    onChanged: controller.changePassword,
+                    validator: controller.passwordValidator,
+                    isPassword: true,
+                  ),
                 ],
               ),
             ),
-            Observer(
-              builder: (_) {
-                return controller.isLoading
-                    ? CircularProgressIndicator()
-                    : RaisedButton(
-                        onPressed: _validate,
-                        child: Text("Login"),
-                      );
-              },
-            ),
+            controller.isLoading
+                ? CircularProgressIndicator()
+                : RaisedButton(
+                    onPressed: _validate,
+                    child: Text("Login"),
+                  ),
             RaisedButton(
               onPressed: () {
                 controller.navigateToRegister(context);
@@ -103,8 +95,8 @@ class _LoginState extends State<Login> {
               child: Text("Cadastrar"),
             )
           ],
-        ),
-      ),
+        );
+      })),
     );
   }
 }
