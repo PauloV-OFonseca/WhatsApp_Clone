@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/chat_tab_controller.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/shared/components/generic_avatar.dart';
@@ -27,15 +28,15 @@ class _ChatsTabState extends State<ChatsTab> {
                     onTap: () {
                       Navigator.pushNamed(context, "/chatroom",
                           arguments: User(
-                              foto: user.foto,
-                              nome: user.titulo,
+                              foto: user.imagem,
+                              nome: user.nome,
                               numero: "98998999",
                               recado: user.ultimaMensagem.texto));
                     },
                     contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-                    leading: GenericAvatar().circleProfile(user.foto),
+                    leading: GenericAvatar().circleProfile(user.imagem),
                     title: Text(
-                      user.titulo,
+                      user.nome,
                       style: TextsStyles.BOLD_TITLE_STYLE,
                     ),
                     subtitle: Text(
@@ -46,7 +47,10 @@ class _ChatsTabState extends State<ChatsTab> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          user.ultimaMensagem.horario,
+                          DateFormat("hh:mm").format(
+                            DateTime.fromMillisecondsSinceEpoch(
+                                user.ultimaMensagem.horario * 1000),
+                          ),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.min,

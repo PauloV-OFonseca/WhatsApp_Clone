@@ -24,20 +24,6 @@ mixin _$ChatTabController on _ChatTabControllerBase, Store {
     });
   }
 
-  final _$_ChatTabControllerBaseActionController =
-      ActionController(name: '_ChatTabControllerBase');
-
-  @override
-  dynamic getChatList() {
-    final _$actionInfo = _$_ChatTabControllerBaseActionController.startAction(
-        name: '_ChatTabControllerBase.getChatList');
-    try {
-      return super.getChatList();
-    } finally {
-      _$_ChatTabControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''
