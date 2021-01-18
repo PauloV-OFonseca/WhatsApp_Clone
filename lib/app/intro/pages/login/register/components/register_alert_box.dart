@@ -6,27 +6,41 @@ class RegisterAlertBox {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return isLoading ? LoadingRegister() : SuccessRegister();
+        return AlertBox(isLoading);
       },
     );
   }
 }
 
-class SuccessRegister extends StatelessWidget {
+class AlertBox extends StatefulWidget {
+  final bool isLoading;
+
+  const AlertBox(this.isLoading);
+
+  @override
+  _AlertBox createState() => _AlertBox();
+}
+
+class _AlertBox extends State<AlertBox> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Usuário cadastrado com sucesso!'),
-      content: SingleChildScrollView(
-          child: Text("Usuário cadastrado, seja bem vindo!")),
+      title: widget.isLoading
+          ? Text("Cadastramento em andamento")
+          : Text("Cadastrado com sucesso"),
+      content: widget.isLoading
+          ? Text("Seu usuário está sendo cadastrado, aguarde um momento")
+          : Text("Usuário cadastrado, seja bem vindo!"),
       actions: <Widget>[
-        TextButton(
-          child: Text('Ok.'),
-          onPressed: () {
-            Navigator.of(context).pop();
-            navigateToHome(context);
-          },
-        ),
+        widget.isLoading
+            ? CircularProgressIndicator()
+            : TextButton(
+                child: Text('Ok.'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  navigateToHome(context);
+                },
+              ),
       ],
     );
   }
@@ -34,17 +48,4 @@ class SuccessRegister extends StatelessWidget {
   navigateToHome(context) {
     Navigator.pushNamedAndRemoveUntil(context, "/home", (_) => false);
   }
-}
-
-class LoadingRegister extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('Cadastramento em andamento'),
-      content: SingleChildScrollView(
-          child: Text("Seu usuário está sendo cadastrado, aguarde um momento")),
-      actions: <Widget>[CircularProgressIndicator()],
-    );
-  }
-
 }
