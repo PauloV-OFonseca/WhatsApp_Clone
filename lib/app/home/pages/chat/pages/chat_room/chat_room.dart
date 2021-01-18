@@ -1,4 +1,6 @@
+import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/message_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 import "package:whatsapp_clone/model/user.dart";
@@ -120,26 +122,60 @@ class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
 
 class ListaDeMensagens extends StatelessWidget {
   final List<String> listaMensagens = ["Olá", "Tudo bem?"];
+  final List<MessageModel> listMessages = [
+    MessageModel(
+        texto: "Olá, tudo bem?",
+        enviada: true,
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2),
+    MessageModel(
+        texto: "Tudo bem e com vc?",
+        enviada: false,
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2),
+    MessageModel(
+        texto: "Flutter é top",
+        enviada: false,
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2),
+    MessageModel(
+        texto: "Verdade!!!! MUITO TOP",
+        enviada: true,
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
         children: [
-          ...listaMensagens.map((msg) {
-            return Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.all(6),
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      color: AppColors.SENDER_MESSAGE_COLOR,
-                      borderRadius: BorderRadius.all(Radius.circular(6))),
-                  child: Text(msg, style: TextsStyles.GENERIC_TEXT_STYLE),
-                ),
-              ),
+          ...listMessages.map((msg) {
+            return Bubble(
+              margin: BubbleEdges.only(top: 10),
+              alignment: msg.enviada ? Alignment.topRight : Alignment.topLeft,
+              nip: msg.enviada ? BubbleNip.rightTop : BubbleNip.leftTop,
+              child: Text(msg.texto, style: TextsStyles.GENERIC_TEXT_STYLE),
+              color:
+                  msg.enviada ? AppColors.SENDER_MESSAGE_COLOR : Colors.white,
             );
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: Padding(
+            //     padding: EdgeInsets.all(6),
+            //     child: Container(
+            //       padding: EdgeInsets.all(16),
+            //       decoration: BoxDecoration(
+            //           color: AppColors.SENDER_MESSAGE_COLOR,
+            //           borderRadius: BorderRadius.all(Radius.circular(6))),
+            //       child: Text(msg.texto, style: TextsStyles.GENERIC_TEXT_STYLE),
+            //     ),
+            //   ),
+            // );
           }).toList(),
         ],
       ),
