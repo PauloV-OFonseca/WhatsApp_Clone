@@ -50,6 +50,7 @@ class _LoginState extends State<Login> {
     _validate() {
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
+        FocusScope.of(context).unfocus();
         controller.login(context);
       }
     }
