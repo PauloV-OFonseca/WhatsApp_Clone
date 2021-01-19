@@ -29,16 +29,18 @@ class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
               keyboardType: TextInputType.text,
               style: TextStyle(fontSize: 20),
               decoration: InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(32, 8, 32, 8),
-                  hintText: "Digite uma mensagem...",
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32)),
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.camera_alt),
-                    onPressed: null,
-                  )),
+                contentPadding: EdgeInsets.fromLTRB(32, 8, 32, 8),
+                hintText: "Digite uma mensagem...",
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.camera_alt),
+                  onPressed: null,
+                ),
+              ),
             ),
           ),
         ),
