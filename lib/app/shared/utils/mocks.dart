@@ -1,3 +1,4 @@
+import 'package:whatsapp_clone/app/home/pages/chat/models/message_model.dart';
 import 'package:whatsapp_clone/model/call.dart';
 import 'package:whatsapp_clone/model/status.dart';
 import 'package:whatsapp_clone/model/user.dart';
@@ -23,6 +24,35 @@ class Mocks {
           numero: "+55 71 999999997",
           foto:
               "https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-01.jpg")
+    ];
+  }
+
+  List<MessageModel> getMessages() {
+    return [
+      MessageModel(
+        texto: "Olá, tudo bem?",
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2,
+      ),
+      MessageModel(
+        texto: "Tudo bem e com vc?",
+        horario: 1588700170343,
+        remetente: "zjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2,
+      ),
+      MessageModel(
+        texto: "Flutter é top",
+        horario: 1588700170343,
+        remetente: "zjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2,
+      ),
+      MessageModel(
+        texto: "Verdade!!!! MUITO TOP",
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2,
+      ),
     ];
   }
 

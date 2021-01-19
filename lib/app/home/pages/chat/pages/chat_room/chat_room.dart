@@ -31,8 +31,11 @@ class _ChatRoomState extends State<ChatRoom> {
                       child: Text(widget.arguments.user.nome),
                       onTap: () {
                         FocusScope.of(context).unfocus();
-                        Navigator.pushNamed(context, "/detailuser",
-                            arguments: widget.arguments.user);
+                        Navigator.pushNamed(
+                          context,
+                          "/detailuser",
+                          arguments: widget.arguments.user,
+                        );
                       },
                     ),
                   ],

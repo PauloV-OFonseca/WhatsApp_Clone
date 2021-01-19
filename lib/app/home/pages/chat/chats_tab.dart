@@ -24,23 +24,22 @@ class _ChatsTabState extends State<ChatsTab> {
         return Column(
           children: [
             ...controller.chatList.map((ChatModel user) {
+              final arguments = ScreenArguments(
+                User(
+                  foto: user.imagem,
+                  nome: user.nome,
+                  numero: "98998999",
+                  recado: user.ultimaMensagem.texto,
+                ),
+                controller.userUID,
+                controller.messagesList,
+              );
+
               return Column(
                 children: [
                   ListTile(
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        "/chatroom",
-                        arguments: ScreenArguments(
-                          User(
-                              foto: user.imagem,
-                              nome: user.nome,
-                              numero: "98998999",
-                              recado: user.ultimaMensagem.texto),
-                          controller.userUID,
-                          controller.messagesList,
-                        ),
-                      );
+                      controller.navigateToChatRoom(context, arguments);
                     },
                     contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                     leading: GenericAvatar().circleProfile(user.imagem),

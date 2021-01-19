@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/message_model.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
+import 'package:whatsapp_clone/app/shared/utils/mocks.dart';
 
 import 'services/chat_service.dart';
 part 'chat_tab_controller.g.dart';
@@ -22,28 +25,8 @@ abstract class _ChatTabControllerBase with Store {
   String userUID;
 
   @observable
-  ObservableList<MessageModel> messagesList = [
-    MessageModel(
-        texto: "Olá, tudo bem?",
-        horario: 1588700170343,
-        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
-        status: 2),
-    MessageModel(
-        texto: "Tudo bem e com vc?",
-        horario: 1588700170343,
-        remetente: "zjHJORIt7OFaaGCVG30jJHYsbP2",
-        status: 2),
-    MessageModel(
-        texto: "Flutter é top",
-        horario: 1588700170343,
-        remetente: "zjHJORIt7OFaaGCVG30jJHYsbP2",
-        status: 2),
-    MessageModel(
-        texto: "Verdade!!!! MUITO TOP",
-        horario: 1588700170343,
-        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
-        status: 2),
-  ].asObservable();
+  ObservableList<MessageModel> messagesList =
+      Mocks().getMessages().asObservable();
 
   _ChatTabControllerBase() {
     getUid().then((uid) {
@@ -61,5 +44,9 @@ abstract class _ChatTabControllerBase with Store {
 
   void cancelSubscription() {
     subscription.cancel();
+  }
+
+  navigateToChatRoom(BuildContext context, ScreenArguments arguments) {
+    Navigator.pushNamed(context, "/chatroom", arguments: arguments);
   }
 }
