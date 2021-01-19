@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 import 'package:whatsapp_clone/app/shared/utils/mocks.dart';
 
@@ -17,7 +18,7 @@ class _StatusTabState extends State<StatusTab> {
         ...listStatus.map((status) {
           return ListTile(
             onTap: () {
-              Navigator.pushNamed(context, "/statusroom", arguments: status);
+              Navigator.pushNamed(context, AppRoutes.STATUSROOM, arguments: status);
             },
             contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
             leading: CircleAvatar(

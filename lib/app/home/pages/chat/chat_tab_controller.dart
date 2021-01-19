@@ -5,6 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/message_model.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 import 'package:whatsapp_clone/app/shared/utils/mocks.dart';
 
@@ -47,6 +48,6 @@ abstract class _ChatTabControllerBase with Store {
   }
 
   navigateToChatRoom(BuildContext context, ScreenArguments arguments) {
-    Navigator.pushNamed(context, "/chatroom", arguments: arguments);
+    Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: arguments);
   }
 }

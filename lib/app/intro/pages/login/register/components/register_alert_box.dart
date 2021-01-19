@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
 class RegisterAlertBox {
   Future<Widget> showMyDialog(context, bool isLoading) async {
@@ -46,6 +47,6 @@ class _AlertBox extends State<AlertBox> {
   }
 
   navigateToHome(context) {
-    Navigator.pushNamedAndRemoveUntil(context, "/home", (_) => false);
+    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.HOME, (_) => false);
   }
 }

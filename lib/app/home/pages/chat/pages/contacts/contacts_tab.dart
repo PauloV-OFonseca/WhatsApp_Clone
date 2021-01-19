@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/models/user_model.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 
 import 'contacts_controller.dart';
@@ -65,7 +66,7 @@ class _ListUsersState extends State<ListUsers> {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        Navigator.pushNamed(context, "/chatroom", arguments: widget.user);
+        Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: widget.user);
       },
       contentPadding: EdgeInsets.fromLTRB(16, 1, 16, 1),
       leading: CircleAvatar(

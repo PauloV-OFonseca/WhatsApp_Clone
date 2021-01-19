@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 part 'login_controller.g.dart';
 
@@ -95,14 +96,14 @@ abstract class _LoginControllerBase with Store {
   }
 
   navigateToHome(context) {
-    Navigator.pushNamedAndRemoveUntil(context, "/home", (_) => false);
+    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.HOME, (_) => false);
   }
 
   navigateToRegister(context) {
-    Navigator.pushNamed(context, "/register");
+    Navigator.pushNamed(context, AppRoutes.REGISTER);
   }
 
   navigateToLogin(context) {
-    Navigator.pushReplacementNamed(context, "/login");
+    Navigator.pushReplacementNamed(context, AppRoutes.LOGIN);
   }
 }
