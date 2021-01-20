@@ -24,10 +24,42 @@ mixin _$ChatTabController on _ChatTabControllerBase, Store {
     });
   }
 
+  final _$userUIDAtom = Atom(name: '_ChatTabControllerBase.userUID');
+
+  @override
+  String get userUID {
+    _$userUIDAtom.reportRead();
+    return super.userUID;
+  }
+
+  @override
+  set userUID(String value) {
+    _$userUIDAtom.reportWrite(value, super.userUID, () {
+      super.userUID = value;
+    });
+  }
+
+  final _$messagesListAtom = Atom(name: '_ChatTabControllerBase.messagesList');
+
+  @override
+  ObservableList<MessageModel> get messagesList {
+    _$messagesListAtom.reportRead();
+    return super.messagesList;
+  }
+
+  @override
+  set messagesList(ObservableList<MessageModel> value) {
+    _$messagesListAtom.reportWrite(value, super.messagesList, () {
+      super.messagesList = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
-chatList: ${chatList}
+chatList: ${chatList},
+userUID: ${userUID},
+messagesList: ${messagesList}
     ''';
   }
 }

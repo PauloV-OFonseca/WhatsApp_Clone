@@ -7,6 +7,8 @@ import 'package:whatsapp_clone/app/shared/components/generic_avatar.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 import 'package:whatsapp_clone/model/user.dart';
 
+import 'models/message_model.dart';
+
 class ChatsTab extends StatefulWidget {
   @override
   _ChatsTabState createState() => _ChatsTabState();
@@ -22,16 +24,22 @@ class _ChatsTabState extends State<ChatsTab> {
         return Column(
           children: [
             ...controller.chatList.map((ChatModel user) {
+              final arguments = ScreenArguments(
+                User(
+                  foto: user.imagem,
+                  nome: user.nome,
+                  numero: "98998999",
+                  recado: user.ultimaMensagem.texto,
+                ),
+                controller.userUID,
+                controller.messagesList,
+              );
+
               return Column(
                 children: [
                   ListTile(
                     onTap: () {
-                      Navigator.pushNamed(context, "/chatroom",
-                          arguments: User(
-                              foto: user.imagem,
-                              nome: user.nome,
-                              numero: "98998999",
-                              recado: user.ultimaMensagem.texto));
+                      controller.navigateToChatRoom(context, arguments);
                     },
                     contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                     leading: GenericAvatar().circleProfile(user.imagem),
@@ -99,4 +107,12 @@ class _ChatsTabState extends State<ChatsTab> {
       },
     );
   }
+}
+
+class ScreenArguments {
+  final User user;
+  final String uid;
+  final List<MessageModel> messageList;
+
+  ScreenArguments(this.user, this.uid, this.messageList);
 }

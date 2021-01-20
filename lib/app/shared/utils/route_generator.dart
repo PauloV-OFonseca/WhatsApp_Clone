@@ -6,28 +6,29 @@ import 'package:whatsapp_clone/app/home/pages/status/pages/status_room.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/contacts_tab.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/login.dart';
 import 'package:whatsapp_clone/app/intro/pages/login/register/register.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case "/":
+      case AppRoutes.INTRO:
         return MaterialPageRoute(builder: (_) => Home());
-      case "/home":
+      case AppRoutes.HOME:
         return MaterialPageRoute(builder: (_) => Home());
-      case "/contacts":
-        return MaterialPageRoute(builder: (_) => ContactsTab());
-      case "/chatroom":
-        return MaterialPageRoute(builder: (_) => ChatRoom(args));
-      case "/detailuser":
-        return MaterialPageRoute(builder: (_) => DetailUser(args));
-      case "/statusroom":
-        return MaterialPageRoute(builder: (_) => StatusRoom(args));
-      case "/login":
+        case AppRoutes.LOGIN:
         return MaterialPageRoute(builder: (_) => Login());
-      case "/register":
+      case AppRoutes.REGISTER:
         return MaterialPageRoute(builder: (_) => Register());
+      case AppRoutes.CONTACTS:
+        return MaterialPageRoute(builder: (_) => ContactsTab());
+      case AppRoutes.CHATROOM:
+        return MaterialPageRoute(builder: (_) => ChatRoom(args));
+      case AppRoutes.DETAILUSER:
+        return MaterialPageRoute(builder: (_) => DetailUser(args));
+      case AppRoutes.STATUSROOM:
+        return MaterialPageRoute(builder: (_) => StatusRoom(args));
       default:
         return MaterialPageRoute(builder: (_) => Home());
     }
