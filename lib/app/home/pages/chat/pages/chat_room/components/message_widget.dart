@@ -25,14 +25,14 @@ class _MessageWidgetState extends State<MessageWidget> {
 
   @override
   void initState() {
-    _initMessage();
     super.initState();
+    _initMessage();
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
     super.dispose();
+    _scrollController.dispose();
   }
 
   @override
