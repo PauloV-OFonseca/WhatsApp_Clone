@@ -46,8 +46,9 @@ class _ChatRoomState extends State<ChatRoom> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/background.png"), fit: BoxFit.cover)),
+          image: DecorationImage(
+              image: AssetImage("assets/background.png"), fit: BoxFit.cover),
+        ),
         child: SafeArea(
           child: Container(
             padding: EdgeInsets.all(8),
