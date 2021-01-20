@@ -50,18 +50,19 @@ class _ChatRoomState extends State<ChatRoom> {
               image: AssetImage("assets/background.png"), fit: BoxFit.cover),
         ),
         child: SafeArea(
-            child: Container(
-          padding: EdgeInsets.all(8),
-          child: Column(
-            children: [
-              MessageWidget(
-                listMessages: widget.arguments.messageList,
-                uid: widget.arguments.uid,
-              ),
-              CaixaDeMensagens(),
-            ],
+          child: Container(
+            padding: EdgeInsets.all(8),
+            child: Column(
+              children: [
+                MessageWidget(
+                  listMessages: widget.arguments.messageList,
+                  uid: widget.arguments.uid,
+                ),
+                CaixaDeMensagens(),
+              ],
+            ),
           ),
-        )),
+        ),
       ),
     );
   }
