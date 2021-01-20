@@ -36,6 +36,24 @@ class Mocks {
         status: 2,
       ),
       MessageModel(
+        texto: "Olá, tudo bem?",
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2,
+      ),
+      MessageModel(
+        texto: "Olá, tudo bem?",
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2,
+      ),
+      MessageModel(
+        texto: "Olá, tudo bem?",
+        horario: 1588700170343,
+        remetente: "KzjHJORIt7OFaaGCVG30jJHYsbP2",
+        status: 2,
+      ),
+      MessageModel(
         texto: "Tudo bem e com vc?",
         horario: 1588700170343,
         remetente: "zjHJORIt7OFaaGCVG30jJHYsbP2",
