@@ -4,19 +4,43 @@ import 'package:intl/intl.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/message_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
 
-class MessageWidget extends StatelessWidget {
+class MessageWidget extends StatefulWidget {
   final List<MessageModel> listMessages;
   final String uid;
   const MessageWidget({Key key, this.listMessages, this.uid});
 
   @override
+  _MessageWidgetState createState() => _MessageWidgetState();
+}
+
+class _MessageWidgetState extends State<MessageWidget> {
+  ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
+      child: ListView(
+        controller: _scrollController,
         children: [
-          if (listMessages != null)
-            ...listMessages.map((msg) {
-              return MessageList(msg, uid);
+          if (widget.listMessages != null)
+            ...widget.listMessages.map((msg) {
+              return MessageList(msg, widget.uid);
             }).toList(),
         ],
       ),
