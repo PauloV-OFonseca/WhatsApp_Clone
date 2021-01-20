@@ -16,13 +16,16 @@ class MessageWidget extends StatefulWidget {
 class _MessageWidgetState extends State<MessageWidget> {
   ScrollController _scrollController;
 
-  @override
-  void initState() {
+  _initMessage() {
     _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
+  }
 
+  @override
+  void initState() {
+    _initMessage();
     super.initState();
   }
 
