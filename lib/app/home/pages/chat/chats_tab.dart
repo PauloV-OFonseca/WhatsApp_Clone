@@ -7,7 +7,6 @@ import 'package:whatsapp_clone/app/shared/components/generic_avatar.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 import 'package:whatsapp_clone/model/user.dart';
 
-import 'models/message_model.dart';
 
 class ChatsTab extends StatefulWidget {
   @override
@@ -31,8 +30,7 @@ class _ChatsTabState extends State<ChatsTab> {
                   numero: "98998999",
                   recado: user.ultimaMensagem.texto,
                 ),
-                controller.userUID,
-                controller.messagesList,
+                controller.userUID
               );
 
               return Column(
@@ -112,7 +110,6 @@ class _ChatsTabState extends State<ChatsTab> {
 class ScreenArguments {
   final User user;
   final String uid;
-  final List<MessageModel> messageList;
 
-  ScreenArguments(this.user, this.uid, this.messageList);
+  ScreenArguments(this.user, this.uid);
 }

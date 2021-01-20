@@ -4,8 +4,11 @@ import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/me
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/text_form_message.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
+import 'chat_room_controller.dart';
+
 class ChatRoom extends StatefulWidget {
   final ScreenArguments arguments;
+
   ChatRoom(this.arguments);
 
   @override
@@ -13,6 +16,8 @@ class ChatRoom extends StatefulWidget {
 }
 
 class _ChatRoomState extends State<ChatRoom> {
+  final controller = ChatRoomController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +60,7 @@ class _ChatRoomState extends State<ChatRoom> {
             child: Column(
               children: [
                 MessageWidget(
-                  listMessages: widget.arguments.messageList,
+                  listMessages: controller.messagesList,
                   uid: widget.arguments.uid,
                 ),
                 CaixaDeMensagens(),
