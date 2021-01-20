@@ -36,6 +36,7 @@ abstract class _ChatTabControllerBase with Store {
           .getChatListByUID(uid)
           .listen((event) => chatList = event.asObservable());
     });
+    messagesList.sort((a, b) => a.horario.compareTo(b.horario));
   }
 
   Future<String> getUid() async {
