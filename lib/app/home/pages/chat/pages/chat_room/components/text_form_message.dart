@@ -2,29 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
 
 class CaixaDeMensagens extends StatefulWidget {
+  final Function onTap;
+  final String uid;
+
+  const CaixaDeMensagens({Key key, this.onTap, this.uid});
+
   @override
   _CaixaDeMensagensState createState() => _CaixaDeMensagensState();
 }
 
 class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
-  final TextEditingController _controllerMensagem = TextEditingController();
+  TextEditingController _controllerTextFormField;
+
+  _onSubmit() {
+    if (_controllerTextFormField.text.isNotEmpty) {
+      widget.onTap(_controllerTextFormField.text, widget.uid);
+      _controllerTextFormField.text = "";
+      _closeKeyBoard();
+    }
+  }
+
+  _closeKeyBoard() {
+    FocusScope.of(context).unfocus();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controllerTextFormField = TextEditingController();
+  }
 
   @override
   void dispose() {
     super.dispose();
-    _controllerMensagem.dispose();
+    _controllerTextFormField.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),
-      child: Row(children: <Widget>[
+      child: Row(children: [
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(right: 8),
-            child: TextField(
-              controller: _controllerMensagem,
+            child: TextFormField(
+              // onFieldSubmitted: (_) => _closeKeyBoard(),
+              controller: _controllerTextFormField,
               autofocus: false,
               keyboardType: TextInputType.text,
               style: TextStyle(fontSize: 20),
@@ -51,7 +75,7 @@ class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
             color: Colors.white,
           ),
           mini: true,
-          onPressed: null,
+          onPressed: _onSubmit,
         )
       ]),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/text_form_message.dart';
@@ -17,6 +18,10 @@ class ChatRoom extends StatefulWidget {
 
 class _ChatRoomState extends State<ChatRoom> {
   final controller = ChatRoomController();
+
+  _closeKeyBoard() {
+    FocusScope.of(context).unfocus();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,7 @@ class _ChatRoomState extends State<ChatRoom> {
                     InkWell(
                       child: Text(widget.arguments.user.nome),
                       onTap: () {
-                        FocusScope.of(context).unfocus();
+                        _closeKeyBoard();
                         _navigateToDetailUser();
                       },
                     ),
@@ -52,19 +57,31 @@ class _ChatRoomState extends State<ChatRoom> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/background.png"), fit: BoxFit.cover),
+            image: AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          ),
         ),
         child: SafeArea(
-          child: Container(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              children: [
-                MessageWidget(
-                  listMessages: controller.messagesList,
-                  uid: widget.arguments.uid,
-                ),
-                CaixaDeMensagens(),
-              ],
+          child: GestureDetector(
+            onTap: _closeKeyBoard,
+            child: Container(
+              padding: EdgeInsets.all(8),
+              child: Observer(
+                builder: (_) {
+                  return Column(
+                    children: [
+                      MessageWidget(
+                        listMessages: controller.messagesList,
+                        uid: widget.arguments.uid,
+                      ),
+                      CaixaDeMensagens(
+                        onTap: controller.addMessage,
+                        uid: widget.arguments.uid,
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),

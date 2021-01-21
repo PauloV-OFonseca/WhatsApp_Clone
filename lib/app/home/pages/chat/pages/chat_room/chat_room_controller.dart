@@ -11,7 +11,18 @@ abstract class _ChatRoomController with Store {
   ObservableList<MessageModel> messagesList =
       Mocks().getMessages().asObservable();
 
-  _ChatRoomController(){
+  _ChatRoomController() {
     messagesList.sort((a, b) => a.horario.compareTo(b.horario));
+  }
+
+  @action
+  addMessage(String newText, String uid) {
+    var newMessage = MessageModel(
+      horario: DateTime.now().millisecondsSinceEpoch,
+      remetente: uid,
+      status: 2,
+      texto: newText,
+    );
+    messagesList.add(newMessage);
   }
 }

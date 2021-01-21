@@ -23,10 +23,25 @@ class _MessageWidgetState extends State<MessageWidget> {
     });
   }
 
+  _scrollWhenListChange() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
     _initMessage();
+  }
+
+  @override
+  void didUpdateWidget(covariant MessageWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print(widget.listMessages.length);
+    _scrollWhenListChange();
   }
 
   @override
@@ -94,15 +109,48 @@ class _MessageListState extends State<MessageList> {
           if (isFromUser)
             Padding(
               padding: EdgeInsets.only(top: 5.0, left: 4),
-              child: Icon(
-                Icons.done_all,
-                size: 17,
-                color: Colors.blue,
-              ),
-            ),
+              child: buildIconStatus(StatusMessage.values[widget.msg.status]),
+            )
         ],
       ),
       color: isFromUser ? AppColors.SENDER_MESSAGE_COLOR : Colors.white,
     );
   }
 }
+
+Icon buildIconStatus(StatusMessage statusMessage) {
+  Icon icon;
+  switch (statusMessage) {
+    case StatusMessage.VISUALIZADO:
+      icon = Icon(
+        Icons.done_all,
+        size: 17,
+        color: Colors.blue,
+      );
+      break;
+    case StatusMessage.ENTREGUE:
+      icon = Icon(
+        Icons.done_all,
+        size: 17,
+        color: Colors.grey,
+      );
+      break;
+    case StatusMessage.NAO_ENTREGUE:
+      icon = Icon(
+        Icons.done,
+        size: 17,
+        color: Colors.grey,
+      );
+      break;
+    case StatusMessage.NAO_ENVIADO:
+      icon = Icon(
+        Icons.watch_later,
+        size: 17,
+        color: Colors.grey,
+      );
+      break;
+  }
+  return icon;
+}
+
+enum StatusMessage { VISUALIZADO, ENTREGUE, NAO_ENTREGUE, NAO_ENVIADO }

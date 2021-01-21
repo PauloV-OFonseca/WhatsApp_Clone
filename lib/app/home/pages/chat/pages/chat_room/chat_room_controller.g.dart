@@ -24,6 +24,20 @@ mixin _$ChatRoomController on _ChatRoomController, Store {
     });
   }
 
+  final _$_ChatRoomControllerActionController =
+      ActionController(name: '_ChatRoomController');
+
+  @override
+  dynamic addMessage(String newText, String uid) {
+    final _$actionInfo = _$_ChatRoomControllerActionController.startAction(
+        name: '_ChatRoomController.addMessage');
+    try {
+      return super.addMessage(newText, uid);
+    } finally {
+      _$_ChatRoomControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
