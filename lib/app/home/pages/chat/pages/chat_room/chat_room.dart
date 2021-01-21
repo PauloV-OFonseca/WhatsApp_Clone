@@ -16,7 +16,15 @@ class ChatRoom extends StatefulWidget {
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-  final controller = ChatRoomController();
+  ChatRoomController controller = ChatRoomController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.init(
+      widget.arguments.uid,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

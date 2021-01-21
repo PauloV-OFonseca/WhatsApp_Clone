@@ -12,16 +12,30 @@ mixin _$ChatRoomController on _ChatRoomController, Store {
   final _$messagesListAtom = Atom(name: '_ChatRoomController.messagesList');
 
   @override
-  ObservableList<MessageModel> get messagesList {
+  ObservableList<ChatRoomModel> get messagesList {
     _$messagesListAtom.reportRead();
     return super.messagesList;
   }
 
   @override
-  set messagesList(ObservableList<MessageModel> value) {
+  set messagesList(ObservableList<ChatRoomModel> value) {
     _$messagesListAtom.reportWrite(value, super.messagesList, () {
       super.messagesList = value;
     });
+  }
+
+  final _$_ChatRoomControllerActionController =
+      ActionController(name: '_ChatRoomController');
+
+  @override
+  void getMessagesFromService() {
+    final _$actionInfo = _$_ChatRoomControllerActionController.startAction(
+        name: '_ChatRoomController.getMessagesFromService');
+    try {
+      return super.getMessagesFromService();
+    } finally {
+      _$_ChatRoomControllerActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

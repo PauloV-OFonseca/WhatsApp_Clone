@@ -38,7 +38,7 @@ class ChatRoomModel {
             key: key ?? this.key,
         );
 
-    factory ChatRoomModel.fromJson(Map<String, dynamic> json) => ChatRoomModel(
+    factory ChatRoomModel.fromJson(Map<dynamic, dynamic> json) => ChatRoomModel(
         remetente: json["remetente"],
         texto: json["texto"],
         horario: json["horario"],

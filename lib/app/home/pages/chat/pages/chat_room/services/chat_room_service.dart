@@ -4,7 +4,7 @@ import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_r
 class ChatRoomService {
   final databaseReference = FirebaseDatabase.instance.reference();
 
-  Stream<List<ChatRoomModel>> getChatsByChatsID(String id) {
+  Stream<List<ChatRoomModel>> getChatByChatID(String id) {
     return databaseReference
         .child('conversas_chat/$id')
         .limitToLast(20)

@@ -1,11 +1,11 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/models/message_model.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
 
 class MessageWidget extends StatefulWidget {
-  final List<MessageModel> listMessages;
+  final List<ChatRoomModel> listMessages;
   final String uid;
   const MessageWidget({Key key, this.listMessages, this.uid});
 
@@ -52,7 +52,7 @@ class _MessageWidgetState extends State<MessageWidget> {
 }
 
 class MessageList extends StatefulWidget {
-  final MessageModel msg;
+  final ChatRoomModel msg;
   final String uid;
 
   const MessageList(this.msg, this.uid);
