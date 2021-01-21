@@ -17,9 +17,11 @@ abstract class _ChatRoomController with Store {
   ObservableList<ChatRoomModel> messagesList;
 
   @action
+  setMessageList(newList) => messagesList = newList;
+
   void getMessagesFromService() {
-    subscription = chatRoomService.getChatByChatID(conversaID).listen((event) {
-      messagesList = event.asObservable();
+    subscription = chatRoomService.getChatByChatID(conversaID).listen((newList) {
+      setMessageList(newList.asObservable());
     });
   }
 
@@ -27,8 +29,8 @@ abstract class _ChatRoomController with Store {
     subscription.cancel();
   }
 
-  init(String conversaID) async{
-    conversaID = conversaID;
+  init(String id) async {
+    this.conversaID = id;
     getMessagesFromService();
   }
 }

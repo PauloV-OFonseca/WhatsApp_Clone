@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/text_form_message.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
@@ -7,9 +8,9 @@ import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'chat_room_controller.dart';
 
 class ChatRoom extends StatefulWidget {
-  final ScreenArguments arguments;
+  final ChatModel user;
 
-  ChatRoom(this.arguments);
+  ChatRoom(this.user);
 
   @override
   _ChatRoomState createState() => _ChatRoomState();
@@ -22,7 +23,7 @@ class _ChatRoomState extends State<ChatRoom> {
   void initState() {
     super.initState();
     controller.init(
-      widget.arguments.uid,
+      widget.user.conversaId,
     );
   }
 
@@ -35,7 +36,7 @@ class _ChatRoomState extends State<ChatRoom> {
             CircleAvatar(
               maxRadius: 20,
               backgroundColor: Colors.grey,
-              backgroundImage: NetworkImage(widget.arguments.user.foto),
+              backgroundImage: NetworkImage(widget.user.imagem),
             ),
             Padding(
               padding: EdgeInsets.only(left: 8),
@@ -43,7 +44,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 child: Column(
                   children: <Widget>[
                     InkWell(
-                      child: Text(widget.arguments.user.nome),
+                      child: Text(widget.user.nome),
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         _navigateToDetailUser();
@@ -60,19 +61,25 @@ class _ChatRoomState extends State<ChatRoom> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/background.png"), fit: BoxFit.cover),
+            image: AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          ),
         ),
         child: SafeArea(
           child: Container(
             padding: EdgeInsets.all(8),
-            child: Column(
-              children: [
-                MessageWidget(
-                  listMessages: controller.messagesList,
-                  uid: widget.arguments.uid,
-                ),
-                CaixaDeMensagens(),
-              ],
+            child: Observer(
+              builder: (_) {
+                return Column(
+                  children: [
+                    MessageWidget(
+                      listMessages: controller.messagesList,
+                      uid: widget.user.remetenteId,
+                    ),
+                    CaixaDeMensagens(),
+                  ],
+                );
+              },
             ),
           ),
         ),
@@ -84,7 +91,7 @@ class _ChatRoomState extends State<ChatRoom> {
     Navigator.pushNamed(
       context,
       AppRoutes.DETAILUSER,
-      arguments: widget.arguments.user,
+      arguments: widget.user,
     );
   }
 }
