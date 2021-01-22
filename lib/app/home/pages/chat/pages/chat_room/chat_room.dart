@@ -88,7 +88,7 @@ class _ChatRoomState extends State<ChatRoom> {
                               uid: uid,
                             ),
                             CaixaDeMensagens(
-                              onTap: controller.addMessage,
+                              onTap: controller.sendMessage,
                               uid: uid,
                             ),
                           ]

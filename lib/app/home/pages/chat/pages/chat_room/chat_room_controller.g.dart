@@ -39,13 +39,6 @@ mixin _$ChatRoomController on _ChatRoomController, Store {
     });
   }
 
-  final _$addMessageAsyncAction = AsyncAction('_ChatRoomController.addMessage');
-
-  @override
-  Future addMessage(String newText, String uid) {
-    return _$addMessageAsyncAction.run(() => super.addMessage(newText, uid));
-  }
-
   final _$_ChatRoomControllerActionController =
       ActionController(name: '_ChatRoomController');
 
@@ -55,6 +48,17 @@ mixin _$ChatRoomController on _ChatRoomController, Store {
         name: '_ChatRoomController.setMessageList');
     try {
       return super.setMessageList(newList);
+    } finally {
+      _$_ChatRoomControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addMessage(ChatRoomModel newMessage) {
+    final _$actionInfo = _$_ChatRoomControllerActionController.startAction(
+        name: '_ChatRoomController.addMessage');
+    try {
+      return super.addMessage(newMessage);
     } finally {
       _$_ChatRoomControllerActionController.endAction(_$actionInfo);
     }

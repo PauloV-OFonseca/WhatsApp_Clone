@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/services/chat_room_service.dart';
 
@@ -42,15 +41,7 @@ abstract class _ChatRoomController with Store {
   }
 
   @action
-  addMessage(String newText, String uid) async {
-    var timeStamp = DateTime.now().millisecondsSinceEpoch;
-    var newMessage = ChatRoomModel(
-      key: uid.substring(0, 5) + timeStamp.toString(),
-      horario: timeStamp,
-      remetente: uid,
-      status: 2,
-      texto: newText,
-    );
+  addMessage(ChatRoomModel newMessage) {
     if (messagesList.length == 12) {
       messagesList = messagesList.reversed.toList().asObservable();
       messagesList.insert(0, newMessage);
@@ -59,6 +50,20 @@ abstract class _ChatRoomController with Store {
     } else {
       messagesList.add(newMessage);
     }
+  }
+
+  sendMessage(String newText, String uid) async {
+    var timeStamp = DateTime.now().millisecondsSinceEpoch;
+    var newMessage = ChatRoomModel(
+      key: uid.substring(0, 5) + timeStamp.toString(),
+      horario: timeStamp,
+      remetente: uid,
+      status: 2,
+      texto: newText,
+    );
+
+    addMessage(newMessage);
+
     try {
       var response = await chatRoomService.sendMessage(newMessage, conversaID);
       print(response);
