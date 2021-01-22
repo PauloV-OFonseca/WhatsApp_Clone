@@ -46,7 +46,7 @@ class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(right: 8),
-            child: TextFormField(
+            child: TextField(
               controller: _controllerTextFormField,
               autofocus: false,
               keyboardType: TextInputType.text,

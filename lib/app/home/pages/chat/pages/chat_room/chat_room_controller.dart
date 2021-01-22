@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:mobx/mobx.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/services/chat_room_service.dart';
 
@@ -24,7 +25,9 @@ abstract class _ChatRoomController with Store {
   void getMessagesFromService() {
     subscription =
         chatRoomService.getChatByChatID(conversaID).listen((newList) {
-      newList = newList.reversed.toList();
+      if (newList.length > 12) {
+        newList = newList.reversed.toList();
+      }
       setMessageList(newList.asObservable());
     });
   }
@@ -48,9 +51,14 @@ abstract class _ChatRoomController with Store {
       status: 2,
       texto: newText,
     );
-
-    messagesList.insert(0, newMessage);
-
+    if (messagesList.length == 12) {
+      messagesList = messagesList.reversed.toList().asObservable();
+      messagesList.insert(0, newMessage);
+    } else if (messagesList.length > 12) {
+      messagesList.insert(0, newMessage);
+    } else {
+      messagesList.add(newMessage);
+    }
     try {
       var response = await chatRoomService.sendMessage(newMessage, conversaID);
       print(response);
