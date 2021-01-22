@@ -18,79 +18,91 @@ class _ChatsTabState extends State<ChatsTab> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (_) {
-        return Column(
-          children: [
-            ...controller.chatList.map((ChatModel user) {
-              return Column(
+        return controller.chatList.isNotEmpty
+            ? Column(
                 children: [
-                  ListTile(
-                    onTap: () {
-                      controller.navigateToChatRoom(context, user);
-                    },
-                    contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-                    leading: GenericAvatar().circleProfile(user.imagem),
-                    title: Text(
-                      user.nome,
-                      style: TextsStyles.BOLD_TITLE_STYLE,
-                    ),
-                    subtitle: Text(
-                      user.ultimaMensagem.texto,
-                      style: TextsStyles.GENERIC_TEXT_STYLE,
-                    ),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          DateFormat("hh:mm").format(
-                            DateTime.fromMillisecondsSinceEpoch(
-                                user.ultimaMensagem.horario * 1000),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (user.silenciado) Icon(Icons.volume_off),
-                            SizedBox(
-                              width: 4,
+                  ...controller.chatList.map(
+                    (ChatModel user) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            onTap: () {
+                              controller.navigateToChatRoom(context, user);
+                            },
+                            contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                            leading: GenericAvatar().circleProfile(user.imagem),
+                            title: Text(
+                              user.nome,
+                              style: TextsStyles.BOLD_TITLE_STYLE,
                             ),
-                            if (user.mensagensNaoLidas > 0)
-                              Container(
-                                height: 20,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    shape: BoxShape.circle),
-                                child: Center(
-                                  child: Text(
-                                    user.mensagensNaoLidas.toString(),
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
+                            subtitle: Text(
+                              user.ultimaMensagem.texto,
+                              style: TextsStyles.GENERIC_TEXT_STYLE,
+                            ),
+                            trailing: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  DateFormat("hh:mm").format(
+                                    DateTime.fromMillisecondsSinceEpoch(
+                                        user.ultimaMensagem.horario * 1000),
                                   ),
                                 ),
-                              )
-                          ],
-                        ),
-                      ],
-                    ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    if (user.silenciado) Icon(Icons.volume_off),
+                                    SizedBox(
+                                      width: 4,
+                                    ),
+                                    if (user.mensagensNaoLidas > 0)
+                                      Container(
+                                        height: 20,
+                                        width: 20,
+                                        decoration: BoxDecoration(
+                                            color: Colors.green,
+                                            shape: BoxShape.circle),
+                                        child: Center(
+                                          child: Text(
+                                            user.mensagensNaoLidas.toString(),
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(85, 0, 10, 0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                      width: 0.20, color: Colors.grey),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(85, 0, 10, 0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(width: 0.20, color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  )
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ],
               );
-            }),
-          ],
-        );
       },
     );
   }
