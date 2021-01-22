@@ -39,6 +39,7 @@ class _ChatRoomState extends State<ChatRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 30,
         title: Row(
           children: [
             CircleAvatar(
@@ -47,7 +48,7 @@ class _ChatRoomState extends State<ChatRoom> {
               backgroundImage: NetworkImage(user.imagem),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 8),
+              padding: EdgeInsets.only(left: 10),
               child: Container(
                 child: Column(
                   children: <Widget>[
