@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
@@ -23,7 +22,6 @@ abstract class _ChatTabControllerBase with Store {
   @observable
   String userUID;
 
-
   _ChatTabControllerBase() {
     getUid().then((uid) {
       userUID = uid;
@@ -42,7 +40,11 @@ abstract class _ChatTabControllerBase with Store {
     subscription.cancel();
   }
 
-  navigateToChatRoom(BuildContext context, ScreenArguments arguments) {
-    Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: arguments);
+  navigateToChatRoom(BuildContext context, ChatModel user) {
+    Map<String, dynamic> args = {
+      "user": user,
+      "uid": userUID,
+    };
+    Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: args);
   }
 }

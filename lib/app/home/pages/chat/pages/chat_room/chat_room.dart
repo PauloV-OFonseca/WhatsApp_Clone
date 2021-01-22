@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/text_form_message.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
@@ -8,7 +8,7 @@ import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'chat_room_controller.dart';
 
 class ChatRoom extends StatefulWidget {
-  final ScreenArguments arguments;
+  final Map<String, dynamic> arguments;
 
   ChatRoom(this.arguments);
 
@@ -17,7 +17,19 @@ class ChatRoom extends StatefulWidget {
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-  final controller = ChatRoomController();
+  ChatRoomController controller = ChatRoomController();
+  ChatModel user;
+  String uid;
+
+  @override
+  void initState() {
+    super.initState();
+    user = widget.arguments["user"];
+    uid = widget.arguments["uid"];
+    controller.init(
+      user.conversaId,
+    );
+  }
 
   _closeKeyBoard() {
     FocusScope.of(context).unfocus();
@@ -32,7 +44,7 @@ class _ChatRoomState extends State<ChatRoom> {
             CircleAvatar(
               maxRadius: 20,
               backgroundColor: Colors.grey,
-              backgroundImage: NetworkImage(widget.arguments.user.foto),
+              backgroundImage: NetworkImage(user.imagem),
             ),
             Padding(
               padding: EdgeInsets.only(left: 8),
@@ -40,7 +52,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 child: Column(
                   children: <Widget>[
                     InkWell(
-                      child: Text(widget.arguments.user.nome),
+                      child: Text(user.nome),
                       onTap: () {
                         _closeKeyBoard();
                         _navigateToDetailUser();
@@ -69,16 +81,18 @@ class _ChatRoomState extends State<ChatRoom> {
               child: Observer(
                 builder: (_) {
                   return Column(
-                    children: [
-                      MessageWidget(
-                        listMessages: controller.messagesList,
-                        uid: widget.arguments.uid,
-                      ),
-                      CaixaDeMensagens(
-                        onTap: controller.addMessage,
-                        uid: widget.arguments.uid,
-                      ),
-                    ],
+                    children: controller.messagesList != null
+                        ? [
+                            MessageWidget(
+                              listMessages: controller.messagesList,
+                              uid: uid,
+                            ),
+                            CaixaDeMensagens(
+                              onTap: controller.addMessage,
+                              uid: uid,
+                            ),
+                          ]
+                        : [CircularProgressIndicator()],
                   );
                 },
               ),
@@ -93,7 +107,7 @@ class _ChatRoomState extends State<ChatRoom> {
     Navigator.pushNamed(
       context,
       AppRoutes.DETAILUSER,
-      arguments: widget.arguments.user,
+      arguments: user,
     );
   }
 }

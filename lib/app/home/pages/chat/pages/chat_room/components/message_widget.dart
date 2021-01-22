@@ -1,12 +1,13 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/models/message_model.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
 
 class MessageWidget extends StatefulWidget {
-  final List<MessageModel> listMessages;
+  final List<ChatRoomModel> listMessages;
   final String uid;
+
   const MessageWidget({Key key, this.listMessages, this.uid});
 
   @override
@@ -14,52 +15,16 @@ class MessageWidget extends StatefulWidget {
 }
 
 class _MessageWidgetState extends State<MessageWidget> {
-  ScrollController _scrollController;
-
-  _initMessage() {
-    _scrollController = ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-    });
-  }
-
-  _scrollWhenListChange() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: Duration(seconds: 1),
-      curve: Curves.fastOutSlowIn,
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _initMessage();
-  }
-
-  @override
-  void didUpdateWidget(covariant MessageWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    print(widget.listMessages.length);
-    _scrollWhenListChange();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _scrollController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        controller: _scrollController,
+        // ignore: null_aware_before_operator
+        reverse: widget?.listMessages?.length > 12 ? true : false,
         children: [
-          if (widget.listMessages != null)
-            ...widget.listMessages.map((msg) {
-              return MessageList(msg, widget.uid);
-            }).toList(),
+          ...widget?.listMessages?.map((msg) {
+            return MessageList(msg, widget.uid);
+          })?.toList(),
         ],
       ),
     );
@@ -67,7 +32,7 @@ class _MessageWidgetState extends State<MessageWidget> {
 }
 
 class MessageList extends StatefulWidget {
-  final MessageModel msg;
+  final ChatRoomModel msg;
   final String uid;
 
   const MessageList(this.msg, this.uid);

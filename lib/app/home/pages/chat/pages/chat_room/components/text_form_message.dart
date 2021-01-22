@@ -5,7 +5,7 @@ class CaixaDeMensagens extends StatefulWidget {
   final Function onTap;
   final String uid;
 
-  const CaixaDeMensagens({Key key, this.onTap, this.uid});
+  const CaixaDeMensagens({this.onTap, this.uid});
 
   @override
   _CaixaDeMensagensState createState() => _CaixaDeMensagensState();
@@ -47,7 +47,6 @@ class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
           child: Padding(
             padding: EdgeInsets.only(right: 8),
             child: TextFormField(
-              // onFieldSubmitted: (_) => _closeKeyBoard(),
               controller: _controllerTextFormField,
               autofocus: false,
               keyboardType: TextInputType.text,

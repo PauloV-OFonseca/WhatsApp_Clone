@@ -5,8 +5,6 @@ import 'package:whatsapp_clone/app/home/pages/chat/chat_tab_controller.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/shared/components/generic_avatar.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
-import 'package:whatsapp_clone/model/user.dart';
-
 
 class ChatsTab extends StatefulWidget {
   @override
@@ -23,21 +21,11 @@ class _ChatsTabState extends State<ChatsTab> {
         return Column(
           children: [
             ...controller.chatList.map((ChatModel user) {
-              final arguments = ScreenArguments(
-                User(
-                  foto: user.imagem,
-                  nome: user.nome,
-                  numero: "98998999",
-                  recado: user.ultimaMensagem.texto,
-                ),
-                controller.userUID
-              );
-
               return Column(
                 children: [
                   ListTile(
                     onTap: () {
-                      controller.navigateToChatRoom(context, arguments);
+                      controller.navigateToChatRoom(context, user);
                     },
                     contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                     leading: GenericAvatar().circleProfile(user.imagem),
@@ -76,9 +64,10 @@ class _ChatsTabState extends State<ChatsTab> {
                                   child: Text(
                                     user.mensagensNaoLidas.toString(),
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               )
@@ -105,11 +94,4 @@ class _ChatsTabState extends State<ChatsTab> {
       },
     );
   }
-}
-
-class ScreenArguments {
-  final User user;
-  final String uid;
-
-  ScreenArguments(this.user, this.uid);
 }
