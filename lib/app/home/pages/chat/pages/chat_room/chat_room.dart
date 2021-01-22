@@ -82,6 +82,7 @@ class _ChatRoomState extends State<ChatRoom> {
               child: Observer(
                 builder: (_) {
                   return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: controller.messagesList != null
                         ? [
                             MessageWidget(
@@ -93,7 +94,11 @@ class _ChatRoomState extends State<ChatRoom> {
                               uid: uid,
                             ),
                           ]
-                        : [CircularProgressIndicator()],
+                        : [
+                            Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ],
                   );
                 },
               ),
