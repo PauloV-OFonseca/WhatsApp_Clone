@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/text_form_message.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_assets_images.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
 import 'chat_room_controller.dart';
@@ -26,13 +27,24 @@ class _ChatRoomState extends State<ChatRoom> {
     super.initState();
     user = widget.arguments["user"];
     uid = widget.arguments["uid"];
-    controller.init(
-      user.conversaId,
-    );
+    controller.init(user.conversaId);
   }
 
   _closeKeyBoard() {
     FocusScope.of(context).unfocus();
+  }
+
+  _navigateToDetailUser() {
+    Navigator.pushNamed(
+      context,
+      AppRoutes.DETAILUSER,
+      arguments: user,
+    );
+  }
+
+  _onTap() {
+    _closeKeyBoard();
+    _navigateToDetailUser();
   }
 
   @override
@@ -54,10 +66,7 @@ class _ChatRoomState extends State<ChatRoom> {
                   children: <Widget>[
                     InkWell(
                       child: Text(user.nome),
-                      onTap: () {
-                        _closeKeyBoard();
-                        _navigateToDetailUser();
-                      },
+                      onTap: _onTap,
                     ),
                   ],
                 ),
@@ -70,7 +79,7 @@ class _ChatRoomState extends State<ChatRoom> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/background.png"),
+            image: AssetImage(AppImages.BACKGROUND),
             fit: BoxFit.cover,
           ),
         ),
@@ -106,14 +115,6 @@ class _ChatRoomState extends State<ChatRoom> {
           ),
         ),
       ),
-    );
-  }
-
-  _navigateToDetailUser() {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.DETAILUSER,
-      arguments: user,
     );
   }
 }

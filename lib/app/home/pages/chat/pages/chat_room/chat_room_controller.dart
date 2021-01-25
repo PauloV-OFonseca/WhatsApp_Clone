@@ -24,9 +24,8 @@ abstract class _ChatRoomController with Store {
   void getMessagesFromService() {
     subscription =
         chatRoomService.getChatByChatID(conversaID).listen((newList) {
-      if (newList.length > 12) {
-        newList = newList.reversed.toList();
-      }
+      if (newList.length > 12) newList = newList.reversed.toList();
+
       setMessageList(newList.asObservable());
     });
   }
@@ -45,16 +44,15 @@ abstract class _ChatRoomController with Store {
     if (messagesList.length == 12) {
       messagesList = messagesList.reversed.toList().asObservable();
       messagesList.insert(0, newMessage);
-    } else if (messagesList.length > 12) {
+    } else if (messagesList.length > 12)
       messagesList.insert(0, newMessage);
-    } else {
+    else
       messagesList.add(newMessage);
-    }
   }
 
   sendMessage(String newText, String uid) async {
-    var timeStamp = DateTime.now().millisecondsSinceEpoch;
-    var newMessage = ChatRoomModel(
+    final timeStamp = DateTime.now().millisecondsSinceEpoch;
+    final newMessage = ChatRoomModel(
       key: uid.substring(0, 5) + timeStamp.toString(),
       horario: timeStamp,
       remetente: uid,
@@ -65,7 +63,8 @@ abstract class _ChatRoomController with Store {
     addMessage(newMessage);
 
     try {
-      var response = await chatRoomService.sendMessage(newMessage, conversaID);
+      final response =
+          await chatRoomService.sendMessage(newMessage, conversaID);
       print(response);
     } catch (erro) {
       print(erro);

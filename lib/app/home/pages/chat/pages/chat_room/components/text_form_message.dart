@@ -42,41 +42,43 @@ class _CaixaDeMensagensState extends State<CaixaDeMensagens> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),
-      child: Row(children: [
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(right: 8),
-            child: TextField(
-              controller: _controllerTextFormField,
-              autofocus: false,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 20),
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(32, 8, 32, 8),
-                hintText: "Digite uma mensagem...",
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.camera_alt),
-                  onPressed: null,
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(right: 8),
+              child: TextField(
+                controller: _controllerTextFormField,
+                autofocus: false,
+                keyboardType: TextInputType.text,
+                style: TextStyle(fontSize: 20),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(32, 8, 32, 8),
+                  hintText: "Digite uma mensagem...",
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.camera_alt),
+                    onPressed: null,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        FloatingActionButton(
-          backgroundColor: AppColors.PRIMARY_COLOR,
-          child: Icon(
-            Icons.send,
-            color: Colors.white,
-          ),
-          mini: true,
-          onPressed: _onSubmit,
-        )
-      ]),
+          FloatingActionButton(
+            backgroundColor: AppColors.PRIMARY_COLOR,
+            child: Icon(
+              Icons.send,
+              color: Colors.white,
+            ),
+            mini: true,
+            onPressed: _onSubmit,
+          )
+        ],
+      ),
     );
   }
 }

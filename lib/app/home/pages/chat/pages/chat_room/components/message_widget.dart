@@ -19,8 +19,9 @@ class _MessageWidgetState extends State<MessageWidget> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        // ignore: null_aware_before_operator
-        reverse: widget?.listMessages?.length > 12 ? true : false,
+        reverse: widget.listMessages != null && widget.listMessages.length > 12
+            ? true
+            : false,
         children: [
           ...widget?.listMessages?.map((msg) {
             return MessageList(msg, widget.uid);
@@ -87,32 +88,16 @@ Icon buildIconStatus(StatusMessage statusMessage) {
   Icon icon;
   switch (statusMessage) {
     case StatusMessage.VISUALIZADO:
-      icon = Icon(
-        Icons.done_all,
-        size: 17,
-        color: Colors.blue,
-      );
+      icon = Icon(Icons.done_all, size: 17, color: Colors.blue);
       break;
     case StatusMessage.ENTREGUE:
-      icon = Icon(
-        Icons.done_all,
-        size: 17,
-        color: Colors.grey,
-      );
+      icon = Icon(Icons.done_all, size: 17, color: Colors.grey);
       break;
     case StatusMessage.NAO_ENTREGUE:
-      icon = Icon(
-        Icons.done,
-        size: 17,
-        color: Colors.grey,
-      );
+      icon = Icon(Icons.done, size: 17, color: Colors.grey);
       break;
     case StatusMessage.NAO_ENVIADO:
-      icon = Icon(
-        Icons.watch_later,
-        size: 17,
-        color: Colors.grey,
-      );
+      icon = Icon(Icons.watch_later, size: 17, color: Colors.grey);
       break;
   }
   return icon;

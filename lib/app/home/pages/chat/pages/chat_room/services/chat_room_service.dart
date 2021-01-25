@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_api.dart';
 
 class ChatRoomService {
   final databaseReference = FirebaseDatabase.instance.reference();
-  final dio = Dio();
+  final dio = Dio(BaseOptions(baseUrl: AppApi.API_BASE_URL));
 
   Stream<List<ChatRoomModel>> getChatByChatID(String id) {
     return databaseReference
@@ -28,9 +29,10 @@ class ChatRoomService {
   }
 
   Future<Response> sendMessage(ChatRoomModel message, String conversaID) {
-    var url =
-        'https://estagio-clima.firebaseio.com/conversas_chat/$conversaID/${message.key}.json';
+    final path = AppApi.CONVERSAS_CHAT
+        .replaceAll("{conversaID}", conversaID)
+        .replaceAll("{message.key}", message.key);
 
-    return dio.put(url, data: chatRoomModelToJson(message));
+    return dio.put(path, data: chatRoomModelToJson(message));
   }
 }
