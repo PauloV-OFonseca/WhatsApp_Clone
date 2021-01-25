@@ -41,10 +41,10 @@ class _MessageWidgetState extends State<MessageWidget> {
       child: ListView(
         controller: _scrollController,
         children: [
-          //if (widget.listMessages != null)
-            ...widget?.listMessages?.map((msg) {
+          if (widget.listMessages != null)
+            ...widget.listMessages.map((msg) {
               return MessageList(msg, widget.uid);
-            })?.toList(),
+            }).toList(),
         ],
       ),
     );

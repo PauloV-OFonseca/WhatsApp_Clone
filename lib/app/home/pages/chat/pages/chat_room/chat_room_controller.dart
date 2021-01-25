@@ -10,6 +10,7 @@ class ChatRoomController = _ChatRoomController with _$ChatRoomController;
 
 abstract class _ChatRoomController with Store {
   final ChatRoomService chatRoomService = ChatRoomService();
+  // ignore: cancel_subscriptions
   StreamSubscription subscription;
   String conversaID;
 
@@ -25,9 +26,6 @@ abstract class _ChatRoomController with Store {
     });
   }
 
-  void cancelSubscription() {
-    subscription.cancel();
-  }
 
   init(String id) async {
     this.conversaID = id;

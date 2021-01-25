@@ -21,7 +21,6 @@ class ChatRoomService {
   int _sortList(ChatRoomModel a, ChatRoomModel b) =>
       a.horario.compareTo(b.horario);
 
-  ChatRoomModel _jsonToChatRoomModel(MapEntry<dynamic, dynamic> json) {
-    return ChatRoomModel.fromJson(json.value);
-  }
+  ChatRoomModel _jsonToChatRoomModel(MapEntry<dynamic, dynamic> json) =>
+      ChatRoomModel.fromJson(json.value);
 }

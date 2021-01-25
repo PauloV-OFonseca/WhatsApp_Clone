@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/text_form_message.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_images.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
 import 'chat_room_controller.dart';
@@ -22,9 +23,7 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   void initState() {
     super.initState();
-    controller.init(
-      widget.user.conversaId,
-    );
+    controller.init(widget.user.conversaId);
   }
 
   @override
@@ -61,7 +60,7 @@ class _ChatRoomState extends State<ChatRoom> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/background.png"),
+            image: AssetImage(AppImages.BACKGROUND_IMAGE),
             fit: BoxFit.cover,
           ),
         ),

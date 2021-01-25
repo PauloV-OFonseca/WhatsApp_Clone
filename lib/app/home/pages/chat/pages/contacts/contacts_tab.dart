@@ -66,26 +66,28 @@ class _ListUsersState extends State<ListUsers> {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        _navigateToChatRoom();
+        Navigator.pushNamed(
+          context,
+          AppRoutes.CHATROOM,
+          arguments: widget.user,
+        );
       },
       contentPadding: EdgeInsets.fromLTRB(16, 1, 16, 1),
       leading: CircleAvatar(
-          maxRadius: 20,
-          backgroundColor: Colors.grey,
-          backgroundImage: NetworkImage(widget.user.foto == null ||
-                  widget.user.foto == ""
-              ? "https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
-              : widget.user.foto)),
+        maxRadius: 20,
+        backgroundColor: Colors.grey,
+        backgroundImage: NetworkImage(
+          isUserImageNull(widget.user.foto),
+        ),
+      ),
       title: Text(widget.user.nome, style: TextsStyles.BOLD_TITLE_STYLE),
       subtitle: Text(widget.user.status, style: TextsStyles.GENERIC_TEXT_STYLE),
     );
   }
 
-  _navigateToChatRoom() {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.CHATROOM,
-      arguments: widget.user,
-    );
+  isUserImageNull(String url) {
+   return url == null || url == ""
+        ? "https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
+        : url;
   }
 }

@@ -24,9 +24,7 @@ class _ChatsTabState extends State<ChatsTab> {
               return Column(
                 children: [
                   ListTile(
-                    onTap: () {
-                      controller.navigateToChatRoom(context, user);
-                    },
+                    onTap: () => controller.navigateToChatRoom(context, user),
                     contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                     leading: GenericAvatar().circleProfile(user.imagem),
                     title: Text(

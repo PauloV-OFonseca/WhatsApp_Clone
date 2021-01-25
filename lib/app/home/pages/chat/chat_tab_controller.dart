@@ -22,7 +22,6 @@ abstract class _ChatTabControllerBase with Store {
   @observable
   String userUID;
 
-
   _ChatTabControllerBase() {
     getUid().then((uid) {
       userUID = uid;
@@ -41,7 +40,6 @@ abstract class _ChatTabControllerBase with Store {
     subscription.cancel();
   }
 
-  navigateToChatRoom(BuildContext context, ChatModel user) {
-    Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: user);
-  }
+  navigateToChatRoom(BuildContext context, ChatModel user) =>
+      Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: user);
 }
