@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/models/user_model.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_assets_images.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
 
@@ -72,22 +73,20 @@ class _ListUsersState extends State<ListUsers> {
           arguments: widget.user,
         );
       },
-      contentPadding: EdgeInsets.fromLTRB(16, 1, 16, 1),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 1),
       leading: CircleAvatar(
         maxRadius: 20,
         backgroundColor: Colors.grey,
-        backgroundImage: NetworkImage(
-          isUserImageNull(widget.user.foto),
-        ),
+        backgroundImage: _backGroundImage(),
       ),
       title: Text(widget.user.nome, style: TextsStyles.BOLD_TITLE_STYLE),
       subtitle: Text(widget.user.status, style: TextsStyles.GENERIC_TEXT_STYLE),
     );
   }
 
-  isUserImageNull(String url) {
-   return url == null || url == ""
-        ? "https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
-        : url;
+  _backGroundImage() {
+    return NetworkImage(widget.user.foto == null || widget.user.foto == ""
+        ? AppImages.NOT_A_PERSON
+        : widget.user.foto);
   }
 }

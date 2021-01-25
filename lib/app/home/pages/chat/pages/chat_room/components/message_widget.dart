@@ -7,6 +7,7 @@ import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
 class MessageWidget extends StatefulWidget {
   final List<ChatRoomModel> listMessages;
   final String uid;
+
   const MessageWidget({Key key, this.listMessages, this.uid});
 
   @override
@@ -14,32 +15,13 @@ class MessageWidget extends StatefulWidget {
 }
 
 class _MessageWidgetState extends State<MessageWidget> {
-  ScrollController _scrollController;
-
-  _initMessage() {
-    _scrollController = ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _initMessage();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _scrollController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        controller: _scrollController,
+        reverse: widget.listMessages != null && widget.listMessages.length > 12
+            ? true
+            : false,
         children: [
           if (widget.listMessages != null)
             ...widget.listMessages.map((msg) {
@@ -94,15 +76,32 @@ class _MessageListState extends State<MessageList> {
           if (isFromUser)
             Padding(
               padding: EdgeInsets.only(top: 5.0, left: 4),
-              child: Icon(
-                Icons.done_all,
-                size: 17,
-                color: Colors.blue,
-              ),
-            ),
+              child: buildIconStatus(StatusMessage.values[widget.msg.status]),
+            )
         ],
       ),
       color: isFromUser ? AppColors.SENDER_MESSAGE_COLOR : Colors.white,
     );
   }
 }
+
+Icon buildIconStatus(StatusMessage statusMessage) {
+  Icon icon;
+  switch (statusMessage) {
+    case StatusMessage.VISUALIZADO:
+      icon = Icon(Icons.done_all, size: 17, color: Colors.blue);
+      break;
+    case StatusMessage.ENTREGUE:
+      icon = Icon(Icons.done_all, size: 17, color: Colors.grey);
+      break;
+    case StatusMessage.NAO_ENTREGUE:
+      icon = Icon(Icons.done, size: 17, color: Colors.grey);
+      break;
+    case StatusMessage.NAO_ENVIADO:
+      icon = Icon(Icons.watch_later, size: 17, color: Colors.grey);
+      break;
+  }
+  return icon;
+}
+
+enum StatusMessage { VISUALIZADO, ENTREGUE, NAO_ENTREGUE, NAO_ENVIADO }

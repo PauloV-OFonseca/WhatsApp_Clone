@@ -40,6 +40,11 @@ abstract class _ChatTabControllerBase with Store {
     subscription.cancel();
   }
 
-  navigateToChatRoom(BuildContext context, ChatModel user) =>
-      Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: user);
+  navigateToChatRoom(BuildContext context, ChatModel user) {
+    Map<String, dynamic> args = {
+      "user": user,
+      "uid": userUID,
+    };
+    Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: args);
+  }
 }

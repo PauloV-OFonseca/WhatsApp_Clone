@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/model/user.dart';
+import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
 
 class DetailUser extends StatefulWidget {
-  final User contato;
+  final ChatModel contato;
 
   DetailUser(this.contato);
 
   @override
   _DetailUserState createState() => _DetailUserState();
 }
-
 
 class _DetailUserState extends State<DetailUser> {
   @override
@@ -21,17 +20,16 @@ class _DetailUserState extends State<DetailUser> {
       body: Center(
         child: Column(
           children: [
-            Image.network(widget.contato.foto),
+            Image.network(widget.contato.imagem),
             Container(
               margin: const EdgeInsets.all(2.0),
               padding: const EdgeInsets.all(5.0),
               decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.grey)
-              ),
+                  border: Border.all(width: 2, color: Colors.grey)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text(widget.contato.recado),
+                  Text(widget.contato.remetenteId),
                 ],
               ),
             ),
@@ -39,12 +37,11 @@ class _DetailUserState extends State<DetailUser> {
               margin: const EdgeInsets.all(2.0),
               padding: const EdgeInsets.all(5.0),
               decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.grey)
-              ),
+                  border: Border.all(width: 2, color: Colors.grey)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text(widget.contato.numero),
+                  Text(widget.contato.conversaId),
                 ],
               ),
             ),
@@ -52,7 +49,5 @@ class _DetailUserState extends State<DetailUser> {
         ),
       ),
     );
-    
   }
-  
 }
