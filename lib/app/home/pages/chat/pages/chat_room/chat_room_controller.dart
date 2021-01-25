@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:mobx/mobx.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/services/chat_room_service.dart';
@@ -32,6 +31,10 @@ abstract class _ChatRoomController with Store {
 
   void cancelSubscription() {
     subscription.cancel();
+  }
+
+  void dispose() {
+    cancelSubscription();
   }
 
   init(String id) async {

@@ -30,6 +30,12 @@ class _ChatRoomState extends State<ChatRoom> {
     controller.init(user.conversaId);
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   _closeKeyBoard() {
     FocusScope.of(context).unfocus();
   }
