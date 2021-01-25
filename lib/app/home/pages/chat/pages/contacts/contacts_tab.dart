@@ -33,20 +33,24 @@ class _ContactsTabState extends State<ContactsTab> {
       ),
       body: Observer(
         builder: (_) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: ListView(
-                  children: [
-                    ...controller.userList.map((user) {
-                      return ListUsers(user);
-                    }).toList()
-                  ],
-                ),
-              )
-            ],
-          );
+          if (controller.isLoading)
+            return LoadingContacts();
+          else {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      ...controller.userList.map((user) {
+                        return ListUsers(user);
+                      }).toList()
+                    ],
+                  ),
+                )
+              ],
+            );
+          }
         },
       ),
     );
@@ -88,5 +92,14 @@ class _ListUsersState extends State<ListUsers> {
     return NetworkImage(widget.user.foto == null || widget.user.foto == ""
         ? AppImages.NOT_A_PERSON
         : widget.user.foto);
+  }
+}
+
+class LoadingContacts extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }

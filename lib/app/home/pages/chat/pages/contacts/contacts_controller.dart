@@ -15,6 +15,9 @@ abstract class _ContactsController with Store {
   @observable
   ObservableList<UserModel> userList = <UserModel>[].asObservable();
 
+  @computed
+  bool get isLoading => userList.isEmpty && userList != null;
+
   _ContactsController() {
     subscription = contactServices.checkUsersList().listen((event) {
       userList = event.asObservable();
