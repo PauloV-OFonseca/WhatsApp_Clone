@@ -11,7 +11,12 @@ class ContactServices {
         entry.value["key"] = entry.key;
         return UserModel.fromJson(entry.value);
       }).toList();
+      userList.sort((a, b) => _sort(a.nome, b.nome));
       return userList;
     });
+  }
+
+  int _sort(String name1, String name2) {
+    return name1.toLowerCase().compareTo(name2.toLowerCase());
   }
 }
