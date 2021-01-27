@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                   ),
             RaisedButton(
               onPressed: () {
-                controller.navigateToRegister(context);
+                controller.navigateToRegister();
               },
               child: Text("Cadastrar"),
             )

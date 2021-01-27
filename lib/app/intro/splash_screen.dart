@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () async {
-      Navigator.pushNamed(context, AppRoutes.LOGIN);
+      Modular.to.pushNamed(AppRoutes.LOGIN);
     });
   }
 
