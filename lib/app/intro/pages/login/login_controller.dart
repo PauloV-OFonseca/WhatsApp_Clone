@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
@@ -52,7 +52,7 @@ abstract class _LoginControllerBase with Store {
     try {
       changeLoading(true);
       await _authService.login(email, password);
-      navigateToHome(context);
+      navigateToHome();
     } catch (error) {
       print(error.code);
       checkError(error.code);
@@ -95,15 +95,15 @@ abstract class _LoginControllerBase with Store {
     return user != null ? true : false;
   }
 
-  navigateToHome(context) {
-    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.HOME, (_) => false);
+  navigateToHome() {
+    Modular.to.pushNamedAndRemoveUntil(AppRoutes.HOME, (_) => false);
   }
 
-  navigateToRegister(context) {
-    Navigator.pushNamed(context, AppRoutes.REGISTER);
+  navigateToRegister() {
+    Modular.to.pushNamed(AppRoutes.REGISTER);
   }
 
-  navigateToLogin(context) {
-    Navigator.pushReplacementNamed(context, AppRoutes.LOGIN);
+  navigateToLogin() {
+    Modular.to.pushReplacementNamed(AppRoutes.LOGIN);
   }
 }
