@@ -1,15 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
+
 part 'login_controller.g.dart';
 
+@Injectable()
 class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
-  final AuthService _authService = AuthService();
+  final AuthService _authService;
 
+  _LoginControllerBase(this._authService);
+  
   @observable
   String email;
 

@@ -12,14 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController _tabController;
-  List<String> itensActions = [
-    // "Novo grupo",
-    // "Nova transmissão",
-    // "WhatsApp Web",
-    // "Mensagens favoritas",
-    // "Configurações",
-    "Deslogar"
-  ];
+  List<String> itensActions = ["Deslogar"];
 
   @override
   void initState() {
@@ -63,15 +56,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         child: Icon(Icons.message),
       ),
       1: FloatingActionButton(
-        onPressed: () {
-          //Navigator.pushNamed(context, "/contacts");
-        },
+        onPressed: () {},
         child: Icon(Icons.camera_alt),
       ),
       2: FloatingActionButton(
-        onPressed: () {
-          //Navigator.pushNamed(context, "/contacts");
-        },
+        onPressed: () {},
         child: Icon(Icons.phone),
       )
     };
@@ -110,11 +99,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             )
           ],
         ),
-        body: TabBarView(controller: _tabController, children: [
-          ChatsTab(),
-          StatusTab(),
-          CallsTab(),
-        ]),
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            ChatsTab(),
+            StatusTab(),
+            CallsTab(),
+          ],
+        ),
         floatingActionButton: _indexToFAB[_tabController.index],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
 class RegisterAlertBox {
@@ -47,6 +48,6 @@ class _AlertBox extends State<AlertBox> {
   }
 
   navigateToHome(context) {
-    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.HOME, (_) => false);
+    Modular.to.pushNamedAndRemoveUntil(AppRoutes.HOME, (_) => false);
   }
 }
