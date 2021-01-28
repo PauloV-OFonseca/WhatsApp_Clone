@@ -5,7 +5,7 @@ import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/pages/detail_
 import 'package:whatsapp_clone/app/home/pages/status/pages/status_room.dart';
 import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/contacts_tab.dart';
 import 'package:whatsapp_clone/app/intro/modules/login/login_page.dart';
-import 'package:whatsapp_clone/app/intro/pages/login/register/register.dart';
+import 'package:whatsapp_clone/app/intro/modules/login/modules/register/register_page.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 
 class RouteGenerator {
@@ -20,7 +20,7 @@ class RouteGenerator {
         case AppRoutes.LOGIN:
         return MaterialPageRoute(builder: (_) => LoginPage());
       case AppRoutes.REGISTER:
-        return MaterialPageRoute(builder: (_) => Register());
+        return MaterialPageRoute(builder: (_) => RegisterPage());
       case AppRoutes.CONTACTS:
         return MaterialPageRoute(builder: (_) => ContactsTab());
       case AppRoutes.CHATROOM:

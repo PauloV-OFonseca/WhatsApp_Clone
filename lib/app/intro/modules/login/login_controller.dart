@@ -104,7 +104,7 @@ abstract class _LoginControllerBase with Store {
   }
 
   navigateToRegister() {
-    Modular.to.pushNamed(AppRoutes.REGISTER);
+    Modular.link.pushNamed(AppRoutes.REGISTER);
   }
 
   navigateToLogin() {

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:whatsapp_clone/app/intro/pages/login/register/models/new_user_model.dart';
-import 'components/profile_image.dart';
-import 'components/register_form.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:whatsapp_clone/app/intro/modules/login/modules/register/components/profile_image.dart';
+import 'package:whatsapp_clone/app/intro/modules/login/modules/register/components/register_form.dart';
+import 'package:whatsapp_clone/app/intro/modules/login/modules/register/models/new_user_model.dart';
 import 'register_controller.dart';
 
-class Register extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
+  final String title;
+  const RegisterPage({Key key, this.title = "Register"}) : super(key: key);
+
   @override
-  _RegisterState createState() => _RegisterState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterState extends State<Register> {
-  final controller = RegisterController();
-
+class _RegisterPageState
+    extends ModularState<RegisterPage, RegisterController> {
   var user = NewUserModel(dados: Dados());
 
   final _registerFormKey = GlobalKey<FormState>();

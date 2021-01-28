@@ -1,0 +1,5 @@
+lib/app/intro/modules/login/modules/register/register_module.dart
+lib/app/intro/modules/login/modules/register/register_page.dart
+test/app/intro/modules/login/modules/register/register_page_test.dart
+lib/app/intro/modules/login/modules/register/register_controller.dart
+test/app/intro/modules/login/modules/register/register_controller_test.dart
