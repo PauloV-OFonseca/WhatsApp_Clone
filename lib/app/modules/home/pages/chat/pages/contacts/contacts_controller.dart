@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/services/contact_services.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/contacts/services/contact_services.dart';
 
 import 'models/user_model.dart';
 part 'contacts_controller.g.dart';

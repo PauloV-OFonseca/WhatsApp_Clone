@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/models/chat_model.dart';
 
 class DetailUser extends StatefulWidget {
   final ChatModel contato;

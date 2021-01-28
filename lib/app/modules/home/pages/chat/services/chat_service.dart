@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/firebase.dart';
 
 class ChatService {

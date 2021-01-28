@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/models/user_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/contacts/models/user_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_assets_images.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';

@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/services/chat_room_service.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/services/chat_room_service.dart';
+
+import 'models/chat_room_model.dart';
 
 part 'chat_room_controller.g.dart';
 
@@ -27,7 +28,6 @@ abstract class _ChatRoomController with Store {
       setMessageList(newList.asObservable());
     });
   }
-
 
   void dispose() {
     cancelSubscription();

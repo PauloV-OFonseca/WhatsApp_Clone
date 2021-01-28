@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/message_widget.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/chat_room/components/text_form_message.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/models/chat_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/components/message_widget.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/components/text_form_message.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_assets_images.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 

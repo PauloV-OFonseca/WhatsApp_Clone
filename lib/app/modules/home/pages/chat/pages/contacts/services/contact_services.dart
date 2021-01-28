@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/pages/contacts/models/user_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/contacts/models/user_model.dart';
 
 class ContactServices {
   final databaseReference = FirebaseDatabase.instance.reference();

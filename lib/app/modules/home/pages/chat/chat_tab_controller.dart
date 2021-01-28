@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/models/chat_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 

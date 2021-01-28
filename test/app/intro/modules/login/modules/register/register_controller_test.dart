@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:whatsapp_clone/app/intro/modules/login/modules/register/register_controller.dart';
 import 'package:whatsapp_clone/app/intro/modules/login/modules/register/register_module.dart';
 
 void main() {

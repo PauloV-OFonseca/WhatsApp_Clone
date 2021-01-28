@@ -1,16 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/app/home/pages/call/calls_tab.dart';
-import 'package:whatsapp_clone/app/home/pages/chat/chats_tab.dart';
-import 'package:whatsapp_clone/app/home/pages/status/status_tab.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/call/calls_tab.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/chats_tab.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/status/status_tab.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'package:whatsapp_clone/app/shared/consts/texts_styles.dart';
+import 'home_controller.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
+  final String title;
+  const HomePage({Key key, this.title = "Home"}) : super(key: key);
+
   @override
-  _HomeState createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+class _HomePageState extends ModularState<HomePage, HomeController>
+    with SingleTickerProviderStateMixin {
   TabController _tabController;
   List<String> itensActions = ["Deslogar"];
 
@@ -43,7 +50,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signOut();
 
-    Navigator.pushReplacementNamed(context, "/login");
+    Modular.to.pushReplacementNamed(AppRoutes.LOGIN);
   }
 
   @override
@@ -51,7 +58,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     Map<int, Widget> _indexToFAB = {
       0: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/contacts");
+          Modular.to.pushNamed(AppRoutes.CONTACTS);
         },
         child: Icon(Icons.message),
       ),
