@@ -1,3 +1,6 @@
+import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/chat_room.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
+
 import 'home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -12,6 +15,8 @@ class HomeModule extends ChildModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
+        ModularRouter(AppRoutes.CHATROOM,
+            child: (_, args) => ChatRoom(args.data)),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

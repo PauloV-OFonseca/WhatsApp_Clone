@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:whatsapp_clone/app/modules/home/pages/chat/models/chat_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
@@ -45,6 +46,6 @@ abstract class _ChatTabControllerBase with Store {
       "user": user,
       "uid": userUID,
     };
-    Navigator.pushNamed(context, AppRoutes.CHATROOM, arguments: args);
+    Modular.to.pushNamed(AppRoutes.CHATROOM, arguments: args);
   }
 }

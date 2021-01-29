@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/modules/home/pages/call/calls_tab.dart';
@@ -37,20 +36,6 @@ class _HomePageState extends ModularState<HomePage, HomeController>
 
   void _handleTabIndex() {
     setState(() {});
-  }
-
-  _escolhaActionItem(String escolha) {
-    switch (escolha) {
-      case "Deslogar":
-        _signOut();
-    }
-  }
-
-  _signOut() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    await auth.signOut();
-
-    Modular.to.pushReplacementNamed(AppRoutes.LOGIN);
   }
 
   @override
@@ -94,7 +79,7 @@ class _HomePageState extends ModularState<HomePage, HomeController>
               child: Icon(Icons.search),
             ),
             PopupMenuButton<String>(
-              onSelected: _escolhaActionItem,
+              onSelected: controller.escolhaActionItem,
               itemBuilder: (context) {
                 return itensActions.map((String item) {
                   return PopupMenuItem<String>(
