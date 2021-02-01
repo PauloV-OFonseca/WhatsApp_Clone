@@ -1,7 +1,7 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/modules/chat_room/models/chat_room_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
 
 class MessageWidget extends StatefulWidget {

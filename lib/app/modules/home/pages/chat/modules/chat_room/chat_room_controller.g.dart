@@ -8,8 +8,8 @@ part of 'chat_room_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$ChatRoomController on _ChatRoomController, Store {
-  final _$conversaIDAtom = Atom(name: '_ChatRoomController.conversaID');
+mixin _$ChatRoomController on _ChatRoomControllerBase, Store {
+  final _$conversaIDAtom = Atom(name: '_ChatRoomControllerBase.conversaID');
 
   @override
   String get conversaID {
@@ -24,7 +24,7 @@ mixin _$ChatRoomController on _ChatRoomController, Store {
     });
   }
 
-  final _$messagesListAtom = Atom(name: '_ChatRoomController.messagesList');
+  final _$messagesListAtom = Atom(name: '_ChatRoomControllerBase.messagesList');
 
   @override
   ObservableList<ChatRoomModel> get messagesList {
@@ -39,28 +39,28 @@ mixin _$ChatRoomController on _ChatRoomController, Store {
     });
   }
 
-  final _$_ChatRoomControllerActionController =
-      ActionController(name: '_ChatRoomController');
+  final _$_ChatRoomControllerBaseActionController =
+      ActionController(name: '_ChatRoomControllerBase');
 
   @override
   dynamic setMessageList(dynamic newList) {
-    final _$actionInfo = _$_ChatRoomControllerActionController.startAction(
-        name: '_ChatRoomController.setMessageList');
+    final _$actionInfo = _$_ChatRoomControllerBaseActionController.startAction(
+        name: '_ChatRoomControllerBase.setMessageList');
     try {
       return super.setMessageList(newList);
     } finally {
-      _$_ChatRoomControllerActionController.endAction(_$actionInfo);
+      _$_ChatRoomControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic addMessage(ChatRoomModel newMessage) {
-    final _$actionInfo = _$_ChatRoomControllerActionController.startAction(
-        name: '_ChatRoomController.addMessage');
+    final _$actionInfo = _$_ChatRoomControllerBaseActionController.startAction(
+        name: '_ChatRoomControllerBase.addMessage');
     try {
       return super.addMessage(newMessage);
     } finally {
-      _$_ChatRoomControllerActionController.endAction(_$actionInfo);
+      _$_ChatRoomControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 

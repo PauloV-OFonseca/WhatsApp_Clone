@@ -1,21 +1,25 @@
 import 'dart:async';
-import 'package:mobx/mobx.dart';
-import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/services/chat_room_service.dart';
 
-import 'models/chat_room_model.dart';
+import 'package:mobx/mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/modules/chat_room/models/chat_room_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/modules/chat_room/services/chat_room_service.dart';
 
 part 'chat_room_controller.g.dart';
 
-class ChatRoomController = _ChatRoomController with _$ChatRoomController;
+@Injectable()
+class ChatRoomController = _ChatRoomControllerBase with _$ChatRoomController;
 
-abstract class _ChatRoomController with Store {
-  final ChatRoomService chatRoomService = ChatRoomService();
+abstract class _ChatRoomControllerBase with Store {
+  final ChatRoomService chatRoomService;
   StreamSubscription subscription;
   @observable
   String conversaID;
 
   @observable
   ObservableList<ChatRoomModel> messagesList;
+
+  _ChatRoomControllerBase(this.chatRoomService);
 
   @action
   setMessageList(newList) => messagesList = newList;

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/models/chat_room_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/modules/chat_room/models/chat_room_model.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_api.dart';
 
 class ChatRoomService {

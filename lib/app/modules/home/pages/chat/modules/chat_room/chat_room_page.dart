@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/modules/home/pages/chat/models/chat_model.dart';
-import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/components/message_widget.dart';
-import 'package:whatsapp_clone/app/modules/home/pages/chat/pages/chat_room/components/text_form_message.dart';
-import 'package:whatsapp_clone/app/shared/consts/app_assets_images.dart';
-import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
-
+import 'package:whatsapp_clone/app/modules/home/pages/chat/modules/chat_room/components/message_widget.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/modules/chat_room/components/text_form_message.dart';
+import '../../../../../../shared/consts/app_assets_images.dart';
+import '../../../../../../shared/consts/app_routes.dart';
 import 'chat_room_controller.dart';
 
-class ChatRoom extends StatefulWidget {
+class ChatRoomPage extends StatefulWidget {
   final ChatModel user;
   final String uid;
 
-  ChatRoom({this.user, this.uid});
+  ChatRoomPage(this.user, this.uid);
 
   @override
-  _ChatRoomState createState() => _ChatRoomState();
+  _ChatRoomPageState createState() => _ChatRoomPageState();
 }
 
-class _ChatRoomState extends State<ChatRoom> {
-  ChatRoomController controller = ChatRoomController();
-
+class _ChatRoomPageState
+    extends ModularState<ChatRoomPage, ChatRoomController> {
+  
   @override
   void initState() {
     super.initState();
