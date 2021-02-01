@@ -15,8 +15,13 @@ class HomeModule extends ChildModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
-        ModularRouter(AppRoutes.CHATROOM,
-            child: (_, args) => ChatRoom(args.data)),
+        ModularRouter(
+          AppRoutes.CHATROOM,
+          child: (_, args) => ChatRoom(
+            uid: args.data["uid"],
+            user: args.data["user"],
+          ),
+        ),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

@@ -46,6 +46,6 @@ abstract class _ChatTabControllerBase with Store {
       "user": user,
       "uid": userUID,
     };
-    Modular.to.pushNamed(AppRoutes.CHATROOM, arguments: args);
+    Modular.link.pushNamed(AppRoutes.CHATROOM, arguments: args);
   }
 }

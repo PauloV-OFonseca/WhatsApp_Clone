@@ -9,9 +9,10 @@ import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'chat_room_controller.dart';
 
 class ChatRoom extends StatefulWidget {
-  final Map<String, dynamic> arguments;
+  final ChatModel user;
+  final String uid;
 
-  ChatRoom(this.arguments);
+  ChatRoom({this.user, this.uid});
 
   @override
   _ChatRoomState createState() => _ChatRoomState();
@@ -19,15 +20,12 @@ class ChatRoom extends StatefulWidget {
 
 class _ChatRoomState extends State<ChatRoom> {
   ChatRoomController controller = ChatRoomController();
-  ChatModel user;
-  String uid;
 
   @override
   void initState() {
     super.initState();
-    user = widget.arguments["user"];
-    uid = widget.arguments["uid"];
-    controller.init(user.conversaId);
+
+    controller.init(widget.user.conversaId);
   }
 
   @override
@@ -44,7 +42,7 @@ class _ChatRoomState extends State<ChatRoom> {
     Navigator.pushNamed(
       context,
       AppRoutes.DETAILUSER,
-      arguments: user,
+      arguments: widget.user,
     );
   }
 
@@ -63,7 +61,7 @@ class _ChatRoomState extends State<ChatRoom> {
             CircleAvatar(
               maxRadius: 20,
               backgroundColor: Colors.grey,
-              backgroundImage: NetworkImage(user.imagem),
+              backgroundImage: NetworkImage(widget.user.imagem),
             ),
             Padding(
               padding: EdgeInsets.only(left: 10),
@@ -71,7 +69,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 child: Column(
                   children: <Widget>[
                     InkWell(
-                      child: Text(user.nome),
+                      child: Text(widget.user.nome),
                       onTap: _onTap,
                     ),
                   ],
@@ -102,11 +100,11 @@ class _ChatRoomState extends State<ChatRoom> {
                         ? [
                             MessageWidget(
                               listMessages: controller.messagesList,
-                              uid: uid,
+                              uid: widget.uid,
                             ),
                             CaixaDeMensagens(
                               onTap: controller.sendMessage,
-                              uid: uid,
+                              uid: widget.uid,
                             ),
                           ]
                         : [
