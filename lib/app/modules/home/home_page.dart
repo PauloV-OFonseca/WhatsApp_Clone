@@ -43,7 +43,7 @@ class _HomePageState extends ModularState<HomePage, HomeController>
     Map<int, Widget> _indexToFAB = {
       0: FloatingActionButton(
         onPressed: () {
-          Modular.to.pushNamed(AppRoutes.CONTACTS);
+          Modular.link.pushNamed(AppRoutes.CONTACTS);
         },
         child: Icon(Icons.message),
       ),

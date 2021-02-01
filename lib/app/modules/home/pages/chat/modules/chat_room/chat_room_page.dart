@@ -39,8 +39,7 @@ class _ChatRoomPageState
   }
 
   _navigateToDetailUser() {
-    Navigator.pushNamed(
-      context,
+    Modular.link.pushNamed(
       AppRoutes.DETAILUSER,
       arguments: widget.user,
     );
