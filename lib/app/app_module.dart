@@ -6,11 +6,13 @@ import 'package:whatsapp_clone/app/intro/modules/login/login_module.dart';
 import 'package:whatsapp_clone/app/intro/splash_screen.dart';
 import 'package:whatsapp_clone/app/modules/home/home_module.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
+import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
+        Bind((i) => AuthService()),
       ];
 
   @override
