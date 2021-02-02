@@ -1,0 +1,5 @@
+lib/app/modules/home/pages/chat/modules/chat_room/chat_room_module.dart
+lib/app/modules/home/pages/chat/modules/chat_room/chat_room_page.dart
+test/app/modules/home/pages/chat/modules/chat_room/chat_room_page_test.dart
+lib/app/modules/home/pages/chat/modules/chat_room/chat_room_controller.dart
+test/app/modules/home/pages/chat/modules/chat_room/chat_room_controller_test.dart

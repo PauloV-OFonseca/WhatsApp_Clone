@@ -1,4 +1,4 @@
-import 'package:whatsapp_clone/app/home/pages/chat/models/message_model.dart';
+import 'package:whatsapp_clone/app/modules/home/pages/chat/models/message_model.dart';
 import 'package:whatsapp_clone/model/call.dart';
 import 'package:whatsapp_clone/model/status.dart';
 import 'package:whatsapp_clone/model/user.dart';

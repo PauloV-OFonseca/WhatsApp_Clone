@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
+import 'package:whatsapp_clone/app/shared/services/auth_service.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,11 +11,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final authService = Modular.get<AuthService>();
   @override
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () async {
-      Modular.to.pushNamed(AppRoutes.LOGIN);
+      await authService.getCurrentUser() == null
+          ? Modular.to.pushNamed(AppRoutes.LOGIN)
+          : Modular.to.pushNamed(AppRoutes.HOME);
     });
   }
 
