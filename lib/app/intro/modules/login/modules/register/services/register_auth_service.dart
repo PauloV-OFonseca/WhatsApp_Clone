@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:whatsapp_clone/app/intro/modules/login/modules/register/models/new_user_model.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_api.dart';
 
 class RegisterAuthService {
-  final String url = "https://us-central1-estagio-clima.cloudfunctions.net/api/v1/usuarios_chat";
   final dio = Dio();
   
   signUp(NewUserModel user) async{
     await dio.post(
-      url,
+      AppApi.REGISTER_URL,
       data: user.toJson()
     );
   }

@@ -92,9 +92,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         child: Text("Login"),
                       ),
                 RaisedButton(
-                  onPressed: () {
-                    controller.navigateToRegister();
-                  },
+                  onPressed: controller.navigateToRegister,
                   child: Text("Cadastrar"),
                 )
               ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:whatsapp_clone/app/shared/consts/app_colors.dart';
+import 'package:whatsapp_clone/app/shared/consts/app_routes.dart';
 import 'intro/splash_screen.dart';
 
 class AppWidget extends StatelessWidget {
@@ -13,7 +14,7 @@ class AppWidget extends StatelessWidget {
         accentColor: AppColors.ACCENT_COLOR,
       ),
       navigatorKey: Modular.navigatorKey,
-      initialRoute: "/",
+      initialRoute: AppRoutes.INTRO,
       onGenerateRoute: Modular.generateRoute,
       debugShowCheckedModeBanner: false,
     );
